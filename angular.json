@@ -23,6 +23,12 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/nova-light/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/@swimlane/ngx-datatable/release/index.css",
+              "node_modules/@swimlane/ngx-datatable/release/themes/bootstrap.css",
+              "node_modules/@swimlane/ngx-datatable/release/assets/icons.css",
               "src/styles.css"
             ],
             "scripts": []
@@ -123,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "woa-angular6-app"
+  "defaultProject": "woa-angular6-app",
+  "cli": {
+    "defaultCollection": "@ngx-formly/schematics"
+  }
 }

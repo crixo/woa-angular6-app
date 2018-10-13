@@ -1,0 +1,46 @@
+<div>
+  <h3>
+    {{title}}
+  </h3>
+
+  <div class="d-flex align-items-center" [hidden]="!showFilter">
+    <input
+      type='text'
+      [(ngModel)]="filter"
+      style='padding:8px;margin:15px auto;width:90%;'
+      placeholder='Type to filter the name column...'
+      (keyup)='updateFilter($event)'
+    />  
+    <button md-icon-button [disabled]="!filter" (click)="resetFilter()">
+      <i class="fas fa-eraser"></i>
+    </button>
+  </div>
+  <ngx-datatable
+    class="bootstrap"
+    [rows]="rows"
+    [columns]="columns"
+    [columnMode]="'flex'"
+    [loadingIndicator]=true
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [externalPaging]="true"
+    [count]="page.totalElements"
+    [offset]="page.pageNumber"
+    [limit]="page.size"
+    (page)='setPage($event)'
+    [selectionType]="'single'"
+    (select)='onSelect($event)'>
+    <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop" [flexGrow]="3">
+    </ngx-datatable-column>
+    <ngx-datatable-column name="Details" sortable="false" prop="id" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+
+        <button md-icon-button (click)="goToDetails(row)">
+          <i class="far fa-edit"></i>
+        </button>
+
+      </ng-template>
+    </ngx-datatable-column>
+  </ngx-datatable>
+</div>
