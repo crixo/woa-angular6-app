@@ -70,10 +70,14 @@ export class PazientiService {
 
   update(entity: Paziente) {
     console.log(entity)
-    return this.http.put(this.baseUrl + '/' + entity.id, entity)
+    const obs = entity.id > 0 ?
+      this.http.put(this.baseUrl + '/' + entity.id, entity)
+      : this.http.post(this.baseUrl, entity);
+
+    return obs
         .pipe(
-            tap((product) => console.log(`updated paziente w/ id=${entity.id}`)),
-            catchError(this.handleError<any>('update paziente')));
+            tap((paziente: Paziente) => console.log(`stored paziente w/ id=${paziente.id}`)),
+            catchError(this.handleError<any>('store paziente')));
   }
 
   // deleteUser(id: number) {

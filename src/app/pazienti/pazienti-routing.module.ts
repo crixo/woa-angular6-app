@@ -9,6 +9,7 @@ import { PazienteFormPage } from './pages/paziente-form.page';
 const routes: Routes = [
   { path: '', component: PazientiPage },
   { path: ':pazienteId/edit', component: PazienteFormPage, resolve: { paziente: PazienteResolver } },
+  { path: 'add', component: PazienteFormPage },
 ];
 
 @NgModule({
@@ -16,6 +17,6 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     providers: [ PazienteResolver ],
-    exports: [  ]
+    exports: [ RouterModule ]
 })
 export class PazientiRoutingModule { }

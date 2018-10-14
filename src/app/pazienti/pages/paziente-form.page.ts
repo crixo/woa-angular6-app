@@ -24,8 +24,11 @@ export class PazienteFormPage implements OnInit, OnDestroy {
   ngOnInit() {
     this.subs.push(
       this.route.data.subscribe(data => {
+        console.log(data['paziente']);
         const paziente = { ...data['paziente'] };
-        paziente.dataDiNascita = this.momentSvc.toLocalString(paziente.dataDiNascita);
+        if (paziente.dataDiNascita !== undefined) {
+          paziente.dataDiNascita = this.momentSvc.toLocalString(paziente.dataDiNascita);
+        }
         this.paziente = paziente;
       })
     );
@@ -39,7 +42,7 @@ export class PazienteFormPage implements OnInit, OnDestroy {
   }
 
   public pazienteSubmitted(paziente: Paziente) {
-    let pazienteDto = {...paziente}
+    let pazienteDto = { ...paziente }
     pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
     console.log(pazienteDto);
     this.subs.push(
@@ -55,13 +58,13 @@ export class PazienteFormPage implements OnInit, OnDestroy {
 
   onSaveComplete(message?: string): void {
     if (message) {
-        //this.messageSvc.addMessage(message);
-        this.alertService.success(message);
+      //this.messageSvc.addMessage(message);
+      this.alertService.success(message);
     }
     //this.reset();
     // Navigate back to the product list
     this.router.navigate(['/pazienti']);
-}
+  }
 
 
   ngOnDestroy(): void {
