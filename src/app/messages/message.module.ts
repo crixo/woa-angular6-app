@@ -5,10 +5,16 @@ import { SharedModule } from '../shared/shared.module';
 
 import { MessageComponent } from './message.component';
 import { MessageService } from './message.service';
+import { AlertService } from './alert.service';
+
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { AlertComponent } from './alert.component';
+import { ENumAsStringPipe } from './enum-to-string.pipe';
 
 @NgModule({
     imports: [
         SharedModule,
+        NgbAlertModule,
         RouterModule.forChild([
             {
                 path: 'messages',
@@ -17,11 +23,13 @@ import { MessageService } from './message.service';
             }
         ])
     ],
+    exports: [AlertComponent],
     declarations: [
-        MessageComponent
+        MessageComponent, AlertComponent, ENumAsStringPipe
     ],
     providers: [
-        MessageService
+        MessageService,
+        AlertService
     ]
 })
 export class MessageModule { }

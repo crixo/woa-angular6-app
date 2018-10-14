@@ -12,7 +12,7 @@ export class AppComponent {
     pageTitle: string = 'WOA';
     loading: boolean = true;
 
-    constructor(private authService: AuthService,
+    constructor(public authService: AuthService,
                 private messageService: MessageService,
                 private router: Router) {
 

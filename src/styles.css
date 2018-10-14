@@ -80,3 +80,11 @@ z-index:10
       transform: rotate(359deg);
   }
 }
+
+
+.my-alert-top{
+  position: fixed;
+  top: 5px; 
+  right:2%;
+  width: 20%;
+}

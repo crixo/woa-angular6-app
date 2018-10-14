@@ -4,7 +4,7 @@ import { PazientiService } from '../services/pazienti.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MomentService } from 'src/app/shared/moment.service';
 import { Subscription } from 'rxjs';
-import { MessageService } from 'src/app/messages/message.service';
+import { AlertService } from 'src/app/messages/alert.service';
 
 @Component({
   templateUrl: 'paziente-form.page.html'
@@ -19,7 +19,7 @@ export class PazienteFormPage implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private momentSvc: MomentService,
     private pazientiService: PazientiService,
-    private messageSvc: MessageService) { }
+    private alertService: AlertService) { }
 
   ngOnInit() {
     this.subs.push(
@@ -39,21 +39,24 @@ export class PazienteFormPage implements OnInit, OnDestroy {
   }
 
   public pazienteSubmitted(paziente: Paziente) {
-    paziente.dataDiNascita = this.momentSvc.toApiString(this.paziente.dataDiNascita);
-    console.log(paziente);
+    let pazienteDto = {...paziente}
+    pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
+    console.log(pazienteDto);
     this.subs.push(
-      this.pazientiService.update(paziente).subscribe((result) => {
+      this.pazientiService.update(pazienteDto).subscribe((result) => {
         console.log(result);
-        this.onSaveComplete('paziente salvato con successo');
+        this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
       }, (err) => {
         console.log(err);
+        this.alertService.error(err);
       })
     );
   }
 
   onSaveComplete(message?: string): void {
     if (message) {
-        this.messageSvc.addMessage(message);
+        //this.messageSvc.addMessage(message);
+        this.alertService.success(message);
     }
     //this.reset();
     // Navigate back to the product list

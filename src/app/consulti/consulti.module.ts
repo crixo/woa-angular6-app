@@ -6,7 +6,6 @@ import { ConsultiService } from './consulti.service';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { ConsultiComponent } from './components/consulti.component';
 import {TableModule} from 'primeng/table';
-import { PazienteDetailsComponent} from '../pazienti/components/paziente-details.component';
 import { PazientePage } from './pages/paziente.page';
 
 @NgModule({
@@ -33,7 +32,7 @@ import { PazientePage } from './pages/paziente.page';
     ConsultiService, 
     PazientiService
   ],
-  declarations: [ ConsultoFormComponent, ConsultiComponent, PazienteDetailsComponent, PazientePage ]
+  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage ]
 })
 export class ConsultiModule { 
 

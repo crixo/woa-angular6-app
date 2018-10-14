@@ -10,6 +10,7 @@ import { AuthService } from './auth.service';
 export class LoginComponent {
     errorMessage: string;
     pageTitle = 'Log In';
+    userName: string;
 
     constructor(private authService: AuthService,
                 private router: Router) { }
