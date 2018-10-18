@@ -30,7 +30,7 @@ export class AnamnesiRemoteComponent implements OnInit {
       this.cols = [
           { field: 'data', header: 'data' },
           { field: 'descrizione', header: 'descrizione' },
-          { field: 'tipoId', header: 'tipo' },
+          { field: 'tipo', subfield:'descrizione', header: 'tipo' },
       ];
   }
 
