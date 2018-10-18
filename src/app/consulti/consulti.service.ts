@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { filter, mapTo, map} from 'rxjs/operators';
 import { Consulto } from './model/consulto.model';
+import { Tipo } from './model/tipo.model';
 
 @Injectable()
 export class ConsultiService {
@@ -39,5 +40,11 @@ export class ConsultiService {
             .pipe(
               map(x=> x.consulti)
             );
+  }
+
+  getTipiAnamnesiRemota(): Observable<Tipo[]> {
+    const uri = this.baseUrl + '/lookups/tipo-anamnesi';
+    console.log(uri);
+    return this.http.get<Tipo[]>(uri);
   }
 }

@@ -13,9 +13,8 @@
             <td *ngFor="let col of columns">
                     {{rowData[col.field]}}
             </td>
-            <td><a [routerLink]="[rowData['id']]">
-             edit
-             </a>
+            <td>
+             <button class="btn btn-lg btn-outline-primary" (click)="open(rowData)">edit</button>
          </td>
         </tr>
     </ng-template>

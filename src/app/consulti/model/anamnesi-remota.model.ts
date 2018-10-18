@@ -1,0 +1,13 @@
+import { Tipo } from "./tipo.model";
+
+export class AnamnesiRemota {
+  id: number;
+  pazienteId: number;
+  data: Date;
+  tipoId: number;
+  descrizione: string;
+  tipo: Tipo;
+  get tipo_descrizione(): string{
+    return this.tipo.descrizione;
+  }
+}

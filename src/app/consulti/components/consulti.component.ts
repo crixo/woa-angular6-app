@@ -6,7 +6,7 @@ import { MomentService } from '../../shared/moment.service';
 
 @Component({
     selector: 'consulti',
-    templateUrl: './consulti.component.html'
+    templateUrl: './list.html'
   })
 export class ConsultiComponent implements OnInit {
 
@@ -15,6 +15,8 @@ export class ConsultiComponent implements OnInit {
   cols: any[];
 
   title: string = "Consulti";
+
+  editPath: string = "consulti";
 
 
   constructor(private consultiSvc: ConsultiService, private momentSvc: MomentService) { }

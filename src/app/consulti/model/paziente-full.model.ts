@@ -1,4 +1,5 @@
 import { Consulto } from "./consulto.model";
+import { AnamnesiRemota } from "./anamnesi-remota.model";
 
 export class PazienteFull {
   id: number;
@@ -13,5 +14,6 @@ export class PazienteFull {
   professione: string;
   prov: string;
   telefono: string;
-  consulti: Consulto[]
+  consulti: Consulto[];
+  anamnesiRemote: AnamnesiRemota[];
 }

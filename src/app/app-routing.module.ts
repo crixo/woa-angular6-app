@@ -18,7 +18,7 @@ const routes: Routes = [
         loadChildren: '../app/pazienti/pazienti.module#PazientiModule'
     },
   {
-      path: 'paziente/:pazienteId/consulti',
+      path: 'paziente/:pazienteId',
       //canActivate: [ AuthGuard ],
       data: { preload: false },
       loadChildren: '../app/consulti/consulti.module#ConsultiModule'

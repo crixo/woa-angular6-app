@@ -7,20 +7,25 @@ import { PazientiService } from '../pazienti/services/pazienti.service';
 import { ConsultiComponent } from './components/consulti.component';
 import {TableModule} from 'primeng/table';
 import { PazientePage } from './pages/paziente.page';
+import { AnamnesiRemoteComponent} from './components/anamnesi-remote.component';
+import { AnamnesiRemotaFormComponent } from './components/anamnesi-remota-form.component';
+import { PazienteResolver } from '../pazienti/services/paziente-resolver.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   imports: [ 
     TableModule,
     SharedModule,
+    NgbModule,
     RouterModule.forChild([
       {
         path: '',
         component: PazientePage,
-        //resolve: { product: ProductResolver },
+        //resolve: { product: PazienteResolver },
         //canDeactivate: [ProductEditGuard],
       },
       {
-        path: ':id',
+        path: 'consulti/:id',
         component: ConsultoFormComponent,
         //resolve: { product: ProductResolver },
         //canDeactivate: [ProductEditGuard],
@@ -32,7 +37,8 @@ import { PazientePage } from './pages/paziente.page';
     ConsultiService, 
     PazientiService
   ],
-  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage ]
+  entryComponents: [AnamnesiRemotaFormComponent],
+  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage, AnamnesiRemoteComponent, AnamnesiRemotaFormComponent ]
 })
 export class ConsultiModule { 
 
