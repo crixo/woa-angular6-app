@@ -11,12 +11,17 @@ import { AnamnesiRemoteComponent} from './components/anamnesi-remote.component';
 import { AnamnesiRemotaFormComponent } from './components/anamnesi-remota-form.component';
 import { PazienteResolver } from '../pazienti/services/paziente-resolver.service';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material';
+import { EntityAddComponent } from './components/entity-add.component';
+
 
 @NgModule({
   imports: [ 
     TableModule,
     SharedModule,
     NgbModule,
+    MatButtonModule,
     RouterModule.forChild([
       {
         path: '',
@@ -38,7 +43,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     PazientiService
   ],
   entryComponents: [AnamnesiRemotaFormComponent],
-  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage, AnamnesiRemoteComponent, AnamnesiRemotaFormComponent ]
+  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage, AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, EntityAddComponent ]
 })
 export class ConsultiModule { 
 

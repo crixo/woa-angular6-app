@@ -1,3 +1,5 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 li {
   font-size: large;
 }
@@ -95,7 +97,7 @@ z-index:10
   right:2%;
   z-index: 999;
 }
-
+/*
 a.fa-cnt{
   list-style: none;
   color: purple;
@@ -124,3 +126,12 @@ a.fa-cnt:hover {
 a.fa-cnt i.fas{
   color: white;
 }
+*/
+
+button:focus {
+  outline: none !important;
+  border: 0 !important;
+}
+
+
+

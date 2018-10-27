@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AnamnesiRemota } from '../model/anamnesi-remota.model';
 import { MomentService } from '../../shared/moment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +13,7 @@ export class AnamnesiRemoteComponent implements OnInit {
 
   @Input() list: AnamnesiRemota[];
   @Input() tipi: Tipo[];
+  @Output() entitySubmitted = new EventEmitter<AnamnesiRemota>();
 
   cols: any[];
 
@@ -40,5 +41,10 @@ export class AnamnesiRemoteComponent implements OnInit {
     const modalRef = this.modalService.open(AnamnesiRemotaFormComponent);
     modalRef.componentInstance.model = entity;
     modalRef.componentInstance.tipi = this.tipi;
+    modalRef.result.then((data) => {
+      this.entitySubmitted.emit(data);
+    }, (reason) => {
+      // on dismiss
+    });
   }  
 }

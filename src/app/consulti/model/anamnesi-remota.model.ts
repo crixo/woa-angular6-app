@@ -7,7 +7,4 @@ export class AnamnesiRemota {
   tipoId: number;
   descrizione: string;
   tipo: Tipo;
-  get tipo_descrizione(): string{
-    return this.tipo.descrizione;
-  }
 }

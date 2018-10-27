@@ -4,10 +4,11 @@
       <paziente-details [paziente]="paziente"></paziente-details>
     </div>
     <div class="col-sm">
-      <anamnesi-remote [list]="anamnesiRemote" [tipi]="tipiAnamnesiRemote"></anamnesi-remote>
+      <anamnesi-remote (entitySubmitted)="onAnamnesiRemotaSubmitted($event)" [list]="anamnesiRemote" [tipi]="tipiAnamnesiRemote"></anamnesi-remote>
     </div>
     <div class="col-sm">
-      <consulti [list]="consulti"></consulti>
+      <consulti (entitySubmitted)="onConsultoSubmitted($event)" [list]="consulti"></consulti>
     </div>
   </div>
 </div>
+<entity-add [entities]="entitiesToAdd" (entityToAddSelected)="onEntityToAddSelected($event)"></entity-add>
