@@ -1,12 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
 import { Page } from '../page';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'woa-grid',
-  templateUrl: 'woa-grid.component.html'
+  templateUrl: 'woa-grid.component.html',
+  styleUrls: ['./woa-grid.component.scss']
 })
-export class WoaGridComponent implements OnInit {
+export class WoaGridComponent implements OnInit, OnChanges {
   @Input() title: string = '';
   @Input() showFilter: boolean = false;
   @Input() rows: any[];
@@ -14,6 +15,7 @@ export class WoaGridComponent implements OnInit {
   @Input() page: Page = new Page();
   filter: string = '';
   @Input() goToTemplate: string;
+  loading: boolean = true;
 
   @Output() pageChanged = new EventEmitter();
 
@@ -24,6 +26,13 @@ export class WoaGridComponent implements OnInit {
 
   ngOnInit() {
     this.setPage({ offset: 0 });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['rows']) {
+      console.log(changes['rows']);
+      this.loading = changes['rows'].firstChange;
+    }
   }
 
   setPage(pageInfo) {
@@ -51,6 +60,7 @@ export class WoaGridComponent implements OnInit {
   updateFilter(event) {
     const val = event.target.value.toLowerCase();
     this.filter = val;
+    this.loading = true;
     console.log(val);
     this.setPage({ offset: 0 });
   }

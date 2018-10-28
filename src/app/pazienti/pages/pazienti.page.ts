@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { PagedData } from 'src/app/shared/paged-data';
 
 @Component({
-  templateUrl: 'pazienti.page.html'
+  templateUrl: 'pazienti.page.html',
+  //styles: [`@import '/node_modules/@swimlane/ngx-datatable/release/themes/material.css';`]
 })
 export class PazientiPage implements OnInit {
   page = new Page();
@@ -25,11 +26,14 @@ export class PazientiPage implements OnInit {
   }
 
   pageChanged(page: Page){
-    this.pazientiSvc.getPazientiResults(this.page).subscribe(pagedData => {
+    this.pazientiSvc.getPazientiResults(this.page)
+      .subscribe(pagedData => {
       this.page = pagedData.page;
       this.rows = pagedData.data;
     });    
   }
+
+
 }
 /*
 export class PazientiPage implements OnInit {

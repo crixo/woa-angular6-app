@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Paziente } from "../model/paziente.model";
 import { Observable, of } from 'rxjs';
-import { map, catchError, tap } from 'rxjs/operators';
+import { map, catchError, tap, delay } from 'rxjs/operators';
 import { PagedData } from '../../shared/paged-data';
 import { Page } from '../../shared/page';
 
@@ -44,7 +44,9 @@ export class PazientiService {
       if(page.filter) url += `?filter=${page.filter}`;
       console.log(url);
       return this.http.get<Paziente>(url)
-              .pipe(map(data => this.getPagedData(page, data)));
+              .pipe(
+                //delay(2000),
+                map(data => this.getPagedData(page, data)));
       
       //of(companyData).pipe(map(data => this.getPagedData(page)));
   }
