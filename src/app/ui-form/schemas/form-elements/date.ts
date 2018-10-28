@@ -7,10 +7,13 @@ export const DATE = (disabled=false, key='data', label='Data') => ({
     {
       label: label,
       placeholder: '__/__/____',
-      disabled: disabled
+      disabled: disabled,
+      attributes: {
+        autocomplete: 'off',
+      },
     },
     {
-      className: 'col-3'
+      
     }
   ),
 });

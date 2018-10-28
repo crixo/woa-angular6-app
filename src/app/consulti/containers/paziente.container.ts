@@ -1,23 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultiService } from '../consulti.service';
 import { MomentService } from '../../shared/moment.service';
-import { Consulto } from '../model/consulto.model';
-import { AnamnesiRemota } from '../model/anamnesi-remota.model';
-import { PazienteFull } from '../model/paziente-full.model';
+import { AnamnesiRemota, Consulto, Tipo, PazienteFull, EntityType } from '../model/index';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Tipo } from '../model/tipo.model';
 import { AnamnesiRemoteComponent } from '../components/anamnesi-remote.component';
-import { EntityAddComponent } from '../components/entity-add.component';
-import { EntityType } from '../model/entity-type';
 import { ConsultiComponent } from '../components/consulti.component';
 import { AlertService } from 'src/app/messages/alert.service';
 
 @Component({
-  templateUrl: 'paziente.page.html'
+  templateUrl: 'paziente.container.html'
 })
 
-export class PazientePage implements OnInit {
+export class PazienteContainer implements OnInit {
   constructor(private consultiSvc: ConsultiService, 
     private route: ActivatedRoute, 
     private momentSvc: MomentService, 

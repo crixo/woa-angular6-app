@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { CONSULTO_FORM } from '../ui-form/schemas/consulto.form';
 import { Consulto } from '../model/consulto.model';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'consulto-form',
-  templateUrl: './item-form-popup.html'
+  templateUrl: './item-form.html'
 })
 export class ConsultoFormComponent implements OnInit {
   public form = new FormGroup({});
@@ -15,7 +14,7 @@ export class ConsultoFormComponent implements OnInit {
   formTitle: string = "Consulto";
   @Input() model: Consulto;
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor() {
 
   }
 
@@ -27,6 +26,5 @@ export class ConsultoFormComponent implements OnInit {
 
   public submit() {
     console.log(this.model);
-    this.activeModal.close(this.model);
   }  
 }

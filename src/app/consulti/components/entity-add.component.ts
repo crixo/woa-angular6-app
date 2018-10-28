@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
 import { addButtonAnimations } from '../../add-button.animations';
-import { EntityType } from '../model/entity-type';
+import { EntityType } from '../model';
 
 @Component({
   selector: 'entity-add',

@@ -8,7 +8,7 @@ import { FieldWrapper } from '@ngx-formly/core';
       <div class="card-header">{{ to.label }}</div>
       <div class="card-body">
         <ng-container #fieldComponent></ng-container>
-        <button type="submit" class="btn btn-success" [disabled]="!form.valid">
+        <button type="submit" class="btn btn-success" [disabled]="!form.valid || form.pristine">
           Submit
         </button>
       </div>

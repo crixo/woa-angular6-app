@@ -3,6 +3,7 @@ import { ConsultiService } from '../consulti.service';
 import { Consulto } from '../model/consulto.model';
 import { ConsultoFormComponent } from './consulto-form.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,8 +21,10 @@ export class ConsultiComponent implements OnInit {
 
   editPath: string = "consulti";
 
+  gridButtonLabel: string = "details";
 
-  constructor(private consultiSvc: ConsultiService, private modalService: NgbModal) { }
+
+  constructor(private consultiSvc: ConsultiService, private router: Router) { }
 
   ngOnInit() {
       // this.consultiSvc.getConsulti(1388).toPromise().then(x => {
@@ -36,12 +39,6 @@ export class ConsultiComponent implements OnInit {
 
   open(entity: Consulto) {
     console.log(entity);
-    const modalRef = this.modalService.open(ConsultoFormComponent);
-    modalRef.componentInstance.model = entity;
-    modalRef.result.then((data) => {
-      this.entitySubmitted.emit(data);
-    }, (reason) => {
-      // on dismiss
-    });
+    this.router.navigate(['/','paziente', entity.pazienteId,'consulti', entity.id]);
   }  
 }

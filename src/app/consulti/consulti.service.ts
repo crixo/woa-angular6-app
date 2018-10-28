@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { PazienteFull } from "./model/paziente-full.model";
 import { Observable, of } from 'rxjs';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Consulto } from './model/consulto.model';
-import { Tipo } from './model/tipo.model';
-import { IEntity } from './model/entity.interface';
+import { Consulto, Tipo, IEntity, Esame, PazienteFull } from './model';
 
 @Injectable()
 export class ConsultiService {
@@ -51,6 +48,10 @@ export class ConsultiService {
 
   storeConsulto(entity: Consulto){
     return this.store(entity, 'consulti');
+  }  
+
+  storeEsame(entity: Esame){
+    return this.store(entity, 'esami');
   }  
 
   private store(entity: IEntity, segment: string){

@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <paziente-details [paziente]="paziente"></paziente-details>
+    </div>
+    <div class="col-sm">
+      <consulto-form [model]='consulto'></consulto-form>
+    </div>
+    <div class="col-sm">
+      <anamnesi-prossima-form [model]='consulto.anamnesiProssima'></anamnesi-prossima-form>
+    </div>
+    <div class="col-sm">
+        <esami (entitySubmitted)="onEsameSubmitted($event)" [list]="consulto.esami"></esami>
+    </div>
+  </div>
+</div>
+<entity-add [entities]="entitiesToAdd" (entityToAddSelected)="onEntityToAddSelected($event)"></entity-add>

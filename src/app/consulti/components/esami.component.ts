@@ -1,28 +1,23 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AnamnesiRemota } from '../model/anamnesi-remota.model';
-import { MomentService } from '../../shared/moment.service';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
+import { Esame, Tipo } from '../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { AnamnesiRemotaFormComponent } from './anamnesi-remota-form.component';
-import { Tipo } from '../model/tipo.model';
+import { EsameFormComponent } from './esame-form.component';
+
 
 @Component({
-    selector: 'anamnesi-remote',
+    selector: 'esami',
     templateUrl: './list.html'
   })
-export class AnamnesiRemoteComponent implements OnInit {
-
-  @Input() list: AnamnesiRemota[];
+export class EsamiComponent implements OnInit {
+  @Input() list: Esame[];
   @Input() tipi: Tipo[];
-  @Output() entitySubmitted = new EventEmitter<AnamnesiRemota>();
-
+  @Output() entitySubmitted = new EventEmitter<Esame>();
   cols: any[];
-
-  title: string = "Anamnesi Remote";
-  editPath: string = "anamnesi-remote";
+  title: string = "Esami";
+  editPath: string = "esami";
   gridButtonLabel: string = "edit";
 
-
-  constructor(private momentSvc: MomentService, private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
 
   ngOnInit() {
       // this.consultiSvc.getConsulti(1388).toPromise().then(x => {
@@ -36,10 +31,10 @@ export class AnamnesiRemoteComponent implements OnInit {
       ];
   }
 
-  open(entity: AnamnesiRemota) {
+  open(entity: Esame) {
     console.log(this.tipi);
     console.log(entity);
-    const modalRef = this.modalService.open(AnamnesiRemotaFormComponent);
+    const modalRef = this.modalService.open(EsameFormComponent);
     modalRef.componentInstance.model = entity;
     modalRef.componentInstance.tipi = this.tipi;
     modalRef.result.then((data) => {

@@ -1,19 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ConsultoFormComponent } from './components/consulto-form.component';
 import { SharedModule } from '../shared/shared.module';
 import { ConsultiService } from './consulti.service';
 import { PazientiService } from '../pazienti/services/pazienti.service';
-import { ConsultiComponent } from './components/consulti.component';
-import {TableModule} from 'primeng/table';
-import { PazientePage } from './pages/paziente.page';
-import { AnamnesiRemoteComponent} from './components/anamnesi-remote.component';
-import { AnamnesiRemotaFormComponent } from './components/anamnesi-remota-form.component';
-import { PazienteResolver } from '../pazienti/services/paziente-resolver.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-//import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { PazienteContainer, ConsultoContainer } from './containers/index';
+import { AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, ConsultoFormComponent, ConsultiComponent, EntityAddComponent, AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent } from './components';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material';
-import { EntityAddComponent } from './components/entity-add.component';
 
 
 @NgModule({
@@ -25,13 +19,13 @@ import { EntityAddComponent } from './components/entity-add.component';
     RouterModule.forChild([
       {
         path: '',
-        component: PazientePage,
+        component: PazienteContainer,
         //resolve: { product: PazienteResolver },
         //canDeactivate: [ProductEditGuard],
       },
       {
         path: 'consulti/:id',
-        component: ConsultoFormComponent,
+        component: ConsultoContainer,
         //resolve: { product: ProductResolver },
         //canDeactivate: [ProductEditGuard],
       }
@@ -42,8 +36,13 @@ import { EntityAddComponent } from './components/entity-add.component';
     ConsultiService, 
     PazientiService
   ],
-  entryComponents: [AnamnesiRemotaFormComponent],
-  declarations: [ ConsultoFormComponent, ConsultiComponent, PazientePage, AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, EntityAddComponent ]
+  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent],
+  declarations: [ 
+    ConsultoContainer, PazienteContainer, 
+    ConsultoFormComponent, ConsultiComponent, 
+    AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, 
+    AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent,
+    EntityAddComponent ]
 })
 export class ConsultiModule { 
 

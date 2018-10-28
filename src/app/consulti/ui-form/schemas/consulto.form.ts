@@ -7,7 +7,10 @@ export const CONSULTO_FORM = (disabled = false) => ({
     {
       wrappers: ['panel'],
       templateOptions: {
-        label: 'Formly'
+        label: 'Consulto',
+        // attributes: { //https://github.com/formly-js/ngx-formly/issues/987
+        //   autocomplete: 'off',
+        // },
       },
       fieldGroup: [
         DATE(disabled),
