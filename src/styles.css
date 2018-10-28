@@ -1,6 +1,6 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 
-li {
+nav li {
   font-size: large;
 }
 
@@ -8,7 +8,7 @@ div.panel-heading {
  font-size: x-large; 
 }
 
-li { 
+nav li { 
   cursor: pointer; 
 }
 
@@ -127,6 +127,14 @@ a.fa-cnt i.fas{
   color: white;
 }
 */
+
+button {
+  cursor: pointer; 
+}
+
+button:hover {
+  background: gray
+}
 
 button:focus {
   outline: none !important;

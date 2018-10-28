@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Paziente } from '../model/paziente.model';
 import { MomentService } from '../../shared/moment.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'paziente-details',
@@ -10,8 +11,12 @@ export class PazienteDetailsComponent  {
   @Input() paziente: Paziente = <Paziente>{};
 
   constructor(
-    private momentSvc: MomentService
+    private router: Router
   ){
     //this.paziente  = new Paziente();
+  }
+
+  editPaziente(paziente: Paziente){
+    this.router.navigate(['/pazienti',paziente.id, 'edit']);
   }
 }

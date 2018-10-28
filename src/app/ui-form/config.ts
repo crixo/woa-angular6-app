@@ -5,7 +5,7 @@ import {
   minValidationMessage
 } from './helpers/validations-messages';
 import { maximumMoneyValidation } from './helpers/validators';
-import { PanelWrapperComponent } from './wrappers/panel-wrapper.component';
+import { PanelWrapperComponent, PanelPopupWrapperComponent } from './wrappers/panel-wrapper.component';
 import { RepeatSectionComponent } from './types/repeat-section.component';
 import { FormlyFieldInputMoney } from './types/money.component';
 import { FormlyFieldInputPercentage } from './types/percentage.component';
@@ -24,6 +24,7 @@ export const config: ConfigOption = {
   ],
   wrappers: [
     { name: 'panel', component: PanelWrapperComponent },
+    { name: 'panel-popup', component: PanelPopupWrapperComponent },
     { name: 'error-on-top', component: ErrorWrapperComponent }
   ],
   types: [

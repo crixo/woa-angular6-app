@@ -7,7 +7,7 @@ import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 import { TextMaskModule } from 'angular2-text-mask';
 
 /** wrappers */
-import { PanelWrapperComponent } from './wrappers/panel-wrapper.component';
+import { PanelWrapperComponent, PanelPopupWrapperComponent } from './wrappers/panel-wrapper.component';
 import { ErrorWrapperComponent } from './wrappers/error.component';
 
 /** types */
@@ -36,6 +36,7 @@ import { config } from './config'
   ],
   declarations: [
     PanelWrapperComponent,
+    PanelPopupWrapperComponent,
     ErrorWrapperComponent,
     RepeatSectionComponent,
     FormlyFieldInputMoney,

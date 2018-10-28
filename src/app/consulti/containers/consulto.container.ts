@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultiService } from '../consulti.service';
 import { ActivatedRoute } from '@angular/router';
 import { MomentService } from 'src/app/shared/moment.service';
 import { AlertService } from 'src/app/messages/alert.service';
-import { PazienteFull, Consulto, Esame } from '../model';
+import { PazienteFull, Consulto, Esame, EntityType } from '../model';
 import { Subscription } from 'rxjs';
+import { EsamiComponent } from '../components';
 
 @Component({
   templateUrl: 'consulto.container.html'
@@ -19,6 +20,11 @@ export class ConsultoContainer implements OnInit {
   paziente: PazienteFull = <PazienteFull>{};
   consulto: Consulto = <Consulto>{};
   private subs: Subscription[] = new Array<Subscription>();
+
+  entitiesToAdd: EntityType[] = [ {icon: 'E', name:'Esame'} ];
+
+  @ViewChild(EsamiComponent)
+  private esamiComponent: EsamiComponent;
 
   ngOnInit() { 
 
@@ -47,9 +53,9 @@ export class ConsultoContainer implements OnInit {
   onEntityToAddSelected(entityName: string){
     console.log(entityName);
     switch(entityName){
-      // case 'AnamnesiRemota':
-      //   this.anamnesiRemoteComponent.open( new AnamnesiRemota());
-      //   break;
+      case 'Esame':
+        this.esamiComponent.open( new Esame());
+        break;
       // case 'Consulto':
       //   this.consultiComponent.open( new Consulto());
       //   break;

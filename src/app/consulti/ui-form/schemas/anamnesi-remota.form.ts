@@ -7,7 +7,7 @@ export const ANAMNESI_REMOTA_FORM = (tipi: Tipo[], disabled = false) => ({
   id: 'ANAMNESI-REMOTA',
   template: [
     {
-      wrappers: ['panel'],
+      wrappers: ['panel-popup'],
       templateOptions: {
         label: 'Formly'
       },

@@ -1,13 +1,24 @@
-<h3>{{paziente.nome}} {{paziente.cognome}}</h3>
+<h4>
+  <span>{{paziente.nome}} {{paziente.cognome}}</span>
+  <button style="border: 0" (click)="editPaziente(paziente)">
+    <i class="fas fa-edit"></i>
+  </button>
+</h4>
 
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    <i class="fas fa-calendar-alt"></i> {{paziente.dataDiNascita | date:"dd/MM/yyyy"}}
+    <i class="fas fa-birthday-cake"></i> {{paziente.dataDiNascita | date:"dd/MM/yyyy"}}
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    <i class="fas fa-calendar-alt"></i> {{paziente.dataDiNascita | date:"dd/MM/yyyy"}}
+    <i class="fas fa-home"></i> {{paziente.indirizzo}}, {{paziente.cap}} - {{paziente.citta}}
   </li>
   <li class="list-group-item d-flex justify-content-between align-items-center">
-    <i class="fas fa-calendar-alt"></i> {{paziente.dataDiNascita | date:"dd/MM/yyyy"}}
+    <i class="fas fa-at"></i> {{paziente.email}}
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <i class="fas fa-phone"></i> {{paziente.telefono}}
+  </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <i class="fas fa-mobile"></i> {{paziente.cellulare}}
   </li>
 </ul>
