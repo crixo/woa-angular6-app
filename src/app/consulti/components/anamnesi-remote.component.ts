@@ -43,6 +43,7 @@ export class AnamnesiRemoteComponent implements OnInit {
     modalRef.componentInstance.model = entity;
     modalRef.componentInstance.tipi = this.tipi;
     modalRef.result.then((data) => {
+      console.log(data);
       this.entitySubmitted.emit(data);
     }, (reason) => {
       // on dismiss

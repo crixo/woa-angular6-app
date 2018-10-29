@@ -8,16 +8,10 @@ import { FieldWrapper } from '@ngx-formly/core';
       <div class="card-header">{{ to.label }}</div>
       <div class="card-body">
         <ng-container #fieldComponent></ng-container>
-        <button type="submit" class="btn btn-success" [disabled]="!form.valid || form.pristine">
+        <button type="submit" class="btn btn-dark float-right" [disabled]="!form.valid || form.pristine">
           Submit
         </button>
       </div>
-      <div class="card-body">
-        <h4>Results</h4>
-      </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">{{ model | json }}</li>
-      </ul>
     </div>
   `
 })
@@ -30,7 +24,7 @@ export class PanelWrapperComponent extends FieldWrapper {
   template: `
     <div>
       <ng-container #fieldComponent></ng-container>
-      <button type="submit" class="btn btn-success" [disabled]="!form.valid || form.pristine">
+      <button type="submit" class="btn btn-dark float-right" [disabled]="!form.valid || form.pristine">
         Submit
       </button>
     </div>

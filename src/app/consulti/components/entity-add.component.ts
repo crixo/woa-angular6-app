@@ -5,11 +5,11 @@ import { EntityType } from '../model';
 @Component({
   selector: 'entity-add',
   template: `
-  <div id="fab-dismiss" 
-     *ngIf="fabTogglerState==='active'" 
-     (click)="onToggleFab()">
-  </div>
-  <div class="fab-container">
+<div id="fab-dismiss" 
+    *ngIf="fabTogglerState==='active'" 
+    (click)="onToggleFab()">
+</div>
+<div class="fab-container">
   <button mat-fab class="fab-toggler"
           (click)="onToggleFab()">
     <i class="fas fa-plus" [@fabToggler]="{value: fabTogglerState}"></i> <!-- Animation here -->
@@ -19,13 +19,14 @@ import { EntityType } from '../model';
             mat-mini-fab
             class="fab-secondary"
             color="secondary"
+            title="{{btn.name}}"
             (click)="onEntitySelected(btn.name)">
       <i class="material-icons">{{btn.icon}}</i>
     </button>
   </div>
 </div> 
   `,
-  styleUrls: ['./entity-add.scss'],
+  //styleUrls: ['./entity-add.scss'],
   animations: addButtonAnimations
 })
 export class EntityAddComponent {

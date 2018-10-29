@@ -7,7 +7,11 @@ import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/messages/alert.service';
 
 @Component({
-  templateUrl: 'paziente-form.page.html'
+  template: `
+  <div class="container">
+    <paziente-form (modelSubmitted)='pazienteSubmitted($event)' [model]="paziente"></paziente-form> 
+  </div> 
+  `
 })
 export class PazienteFormPage implements OnInit, OnDestroy {
   paziente: Paziente;

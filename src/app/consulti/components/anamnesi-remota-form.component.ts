@@ -32,5 +32,6 @@ export class AnamnesiRemotaFormComponent implements OnInit {
     console.log(this.tipi);
     //this.model.data = this.momentSvc.toApiString(this.model.data);
     console.log(this.model);
+    this.activeModal.close(this.model);
   }  
 }

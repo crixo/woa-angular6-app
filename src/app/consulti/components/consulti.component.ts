@@ -39,6 +39,6 @@ export class ConsultiComponent implements OnInit {
 
   open(entity: Consulto) {
     console.log(entity);
-    this.router.navigate(['/','paziente', entity.pazienteId,'consulti', entity.id]);
+    this.router.navigate(['/','paziente', entity.pazienteId, 'consulti', entity.id]);
   }  
 }

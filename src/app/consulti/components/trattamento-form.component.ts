@@ -1,34 +1,31 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Esame, Tipo } from '../model';
+import { Trattamento } from '../model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { ESAME_FORM } from '../ui-form/schemas/esame.form';
+import { TRATTAMENTO_FORM } from '../ui-form/schemas/trattamento.form';
 
 @Component({
   selector: 'ngbd-modal-content',
   templateUrl: './item-form-popup.html'
 })
-export class EsameFormComponent implements OnInit {
+export class TrattamentoFormComponent implements OnInit {
   public form = new FormGroup({});
   public fields: FormlyFieldConfig[];
-  formTitle: string = "Esame";
-  @Input() model: Esame;
-  @Input() tipi: Tipo[];
+  formTitle: string = "Trattamento";
+  @Input() model: Trattamento;
 
   constructor(public activeModal: NgbActiveModal) {
 
   }
 
   ngOnInit() {
-    console.log(this.tipi);
     this.fields= [
-      ...ESAME_FORM(this.tipi).template
+      ...TRATTAMENTO_FORM().template
     ]; 
   }
 
   public submit() {
-    console.log(this.tipi);
     //this.model.data = this.momentSvc.toApiString(this.model.data);
     console.log(this.model);
     this.activeModal.close(this.model);

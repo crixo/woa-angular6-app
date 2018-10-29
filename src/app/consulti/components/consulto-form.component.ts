@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { CONSULTO_FORM } from '../ui-form/schemas/consulto.form';
@@ -13,6 +13,7 @@ export class ConsultoFormComponent implements OnInit {
   public fields: FormlyFieldConfig[];
   formTitle: string = "Consulto";
   @Input() model: Consulto;
+  @Output() entitySubmitted = new EventEmitter<Consulto>();
 
   constructor() {
 
@@ -26,5 +27,6 @@ export class ConsultoFormComponent implements OnInit {
 
   public submit() {
     console.log(this.model);
+    this.entitySubmitted.emit(this.model);
   }  
 }

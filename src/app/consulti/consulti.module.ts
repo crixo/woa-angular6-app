@@ -5,7 +5,18 @@ import { ConsultiService } from './consulti.service';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { TableModule } from 'primeng/table';
 import { PazienteContainer, ConsultoContainer } from './containers/index';
-import { AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, ConsultoFormComponent, ConsultiComponent, EntityAddComponent, AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent } from './components';
+import { AnamnesiRemoteComponent, 
+  AnamnesiRemotaFormComponent, 
+  ConsultoFormComponent, 
+  ConsultiComponent, 
+  EntityAddComponent, 
+  AnamnesiProssimaFormComponent, 
+  EsameFormComponent, 
+  EsamiComponent, 
+  TrattamentiComponent, 
+  TrattamentoFormComponent,
+  ValutazioniComponent,
+  ValutazioneFormComponent } from './components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material';
 
@@ -24,7 +35,7 @@ import { MatButtonModule } from '@angular/material';
         //canDeactivate: [ProductEditGuard],
       },
       {
-        path: 'consulti/:id',
+        path: 'consulti/:consultoId',
         component: ConsultoContainer,
         //resolve: { product: ProductResolver },
         //canDeactivate: [ProductEditGuard],
@@ -36,12 +47,12 @@ import { MatButtonModule } from '@angular/material';
     ConsultiService, 
     PazientiService
   ],
-  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent],
+  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent],
   declarations: [ 
     ConsultoContainer, PazienteContainer, 
     ConsultoFormComponent, ConsultiComponent, 
     AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, 
-    AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent,
+    AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent, TrattamentiComponent, TrattamentoFormComponent, ValutazioniComponent, ValutazioneFormComponent,
     EntityAddComponent ]
 })
 export class ConsultiModule { 

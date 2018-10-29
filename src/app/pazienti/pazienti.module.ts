@@ -9,6 +9,7 @@ import { PazienteFormComponent } from './components/paziente-form.component';
 import { PazientiRoutingModule } from './pazienti-routing.module';
 import { PazientiPage } from './pages/pazienti.page';
 import { PazienteFormPage } from './pages/paziente-form.page';
+import { MatButtonModule } from '@angular/material';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { PazienteFormPage } from './pages/paziente-form.page';
     //HttpClientModule, 
     SharedModule,
     PazientiRoutingModule,
+    MatButtonModule
     ],
   exports: [],
   providers: [PazientiService],

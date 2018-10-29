@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { map, catchError, tap } from 'rxjs/operators';
-import { Consulto, Tipo, IEntity, Esame, PazienteFull } from './model';
+import { Consulto, Tipo, IEntity, Esame, PazienteFull, AnamnesiRemota, AnamnesiProssima, Trattamento, Valutazione } from './model';
 
 @Injectable()
 export class ConsultiService {
@@ -12,33 +12,11 @@ export class ConsultiService {
     private http: HttpClient) { }
   baseUrl: string = 'http://localhost:8010/api';
 
-  // getUsers() {
-  //   return this.http.get<User[]>(this.baseUrl);
-  // }
-
-  // getConsultoById(pazienteId:number, id: number): Observable<Consulto> {
-  //   const uri = this.baseUrl + '/pazienti/' + pazienteId;
-  //   console.log(uri);
-  //   return this.http.get<PazienteFull>(uri)
-  //           .pipe(
-  //             map(x=> x.consulti.find(x=>x.id===id))
-  //           );
-  // }
-
   getPaziente(pazienteId:number): Observable<PazienteFull> {
     const uri = this.baseUrl + '/pazienti/' + pazienteId;
     console.log(uri);
     return this.http.get<PazienteFull>(uri);
   }
-
-  // getConsulti(pazienteId:number): Observable<Consulto[]> {
-  //   const uri = this.baseUrl + '/pazienti/' + pazienteId;
-  //   console.log(uri);
-  //   return this.http.get<PazienteFull>(uri)
-  //           .pipe(
-  //             map(x=> x.consulti)
-  //           );
-  // }
 
   getTipiAnamnesiRemota(): Observable<Tipo[]> {
     const uri = this.baseUrl + '/lookups/tipo-anamnesi';
@@ -46,13 +24,35 @@ export class ConsultiService {
     return this.http.get<Tipo[]>(uri);
   }
 
+  getTipiEsame(): Observable<Tipo[]> {
+    const uri = this.baseUrl + '/lookups/tipo-esami';
+    console.log(uri);
+    return this.http.get<Tipo[]>(uri);
+  }  
+
   storeConsulto(entity: Consulto){
     return this.store(entity, 'consulti');
   }  
 
+  storeAnamnesiRemota(entity: AnamnesiRemota){
+    return this.store(entity, 'anamnesi-remote');
+  }  
+
+  storeAnamnesiProssima(entity: AnamnesiProssima){
+    return this.store(entity, 'anamnesi-prossime');
+  }    
+
   storeEsame(entity: Esame){
     return this.store(entity, 'esami');
-  }  
+  } 
+
+  storeTrattamento(entity: Trattamento){
+    return this.store(entity, 'trattamenti');
+  } 
+
+  storeValutazione(entity: Valutazione){
+    return this.store(entity, 'valutazioni');
+  } 
 
   private store(entity: IEntity, segment: string){
     console.log(entity)

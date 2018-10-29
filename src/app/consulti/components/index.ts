@@ -6,3 +6,7 @@ export * from './entity-add.component';
 export * from './anamnesi-prossima-form.component';
 export * from './esami.component';
 export * from './esame-form.component';
+export * from './trattamenti.component';
+export * from './trattamento-form.component';
+export * from './valutazioni.component';
+export * from './valutazione-form.component';

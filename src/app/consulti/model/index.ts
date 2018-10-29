@@ -6,3 +6,5 @@ export * from './paziente-full.model';
 export * from './tipo.model';
 export * from './anamnesi-prossima.model';
 export * from './esame.model';
+export * from './trattamento.model';
+export * from './valutazione.model';

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { AnamnesiProssima } from '../model';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
@@ -13,6 +13,7 @@ export class AnamnesiProssimaFormComponent implements OnInit {
   public fields: FormlyFieldConfig[];
   formTitle: string = "Anamnesi Prossima";
   @Input() model: AnamnesiProssima;
+  @Output() entitySubmitted = new EventEmitter<AnamnesiProssima>();
 
   constructor() {
   }
@@ -26,5 +27,6 @@ export class AnamnesiProssimaFormComponent implements OnInit {
   public submit() {
     //this.model.data = this.momentSvc.toApiString(this.model.data);
     console.log(this.model);
+    this.entitySubmitted.emit(this.model);
   }  
 }

@@ -1,5 +1,7 @@
-<div class="plus-bottom-right">
-    <a class="fa-cnt" [routerLink]="['add']"><i class="fas fa-plus" aria-hidden="true"></i></a>
+<div class="fab-container">
+    <button mat-fab class="fab-toggler" [routerLink]="['add']">
+        <i class="fas fa-plus"></i>
+    </button>
 </div>
 <div style="margin: 0 2% 0 2%">
     <woa-grid [page]="page" [rows]="rows" [columns]="columns" (pageChanged)='pageChanged($event)' goToTemplate="paziente/(id)"></woa-grid>

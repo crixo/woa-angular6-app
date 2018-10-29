@@ -4,13 +4,15 @@
       <paziente-details [paziente]="paziente"></paziente-details>
     </div>
     <div class="col-sm">
-      <consulto-form [model]='consulto'></consulto-form>
+      <consulto-form [model]='consulto' (entitySubmitted)="onConsultoSubmitted($event)"></consulto-form>
     </div>
     <div class="col-sm">
-      <anamnesi-prossima-form [model]='consulto.anamnesiProssima'></anamnesi-prossima-form>
+      <anamnesi-prossima-form [model]='consulto.anamnesiProssima' (entitySubmitted)="onAnamnesiProssimaSubmitted($event)"></anamnesi-prossima-form>
     </div>
     <div class="col-sm">
-        <esami (entitySubmitted)="onEsameSubmitted($event)" [list]="consulto.esami"></esami>
+        <esami (entitySubmitted)="onEsameSubmitted($event)" [list]="consulto.esami" [tipi]="tipiEsami"></esami>
+        <trattamenti (entitySubmitted)="onTrattamentoSubmitted($event)" [list]="consulto.trattamenti"></trattamenti>
+        <valutazioni (entitySubmitted)="onValutazioneSubmitted($event)" [list]="consulto.valutazioni"></valutazioni>
     </div>
   </div>
 </div>
