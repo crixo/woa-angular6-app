@@ -9,7 +9,7 @@ export const ANAMNESI_REMOTA_FORM = (tipi: Tipo[], disabled = false) => ({
     {
       wrappers: ['panel-popup'],
       templateOptions: {
-        label: 'Formly'
+        label: 'Anamnesi Remota'
       },
       fieldGroup: [
         DATE(disabled),

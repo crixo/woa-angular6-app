@@ -8,12 +8,13 @@ import { Tipo } from '../model/tipo.model';
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl: './item-form-popup.html'
+  templateUrl: './item-form.html'
 })
 export class AnamnesiRemotaFormComponent implements OnInit {
   public form = new FormGroup({});
   public fields: FormlyFieldConfig[];
   formTitle: string = "Anamnesi Remota";
+  useModal: boolean = true;
   @Input() model: AnamnesiRemota;
   @Input() tipi: Tipo[];
 

@@ -14,6 +14,7 @@ export class ValutazioniComponent{
   columns = [{name:'strutturale'},{name:'cranioSacrale'},{name:'akOrtodontica'}];
   title: string = "Valutazioni";
   gridButtonLabel: string = "edit";
+  editAction="open";
 
   constructor(private modalService: NgbModal) { }
 

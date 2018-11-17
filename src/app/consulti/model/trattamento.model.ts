@@ -7,8 +7,9 @@ export class Trattamento implements IEntity {
   consultoId: number;
   descrizione: string;
   
-  constructor() {
+  constructor(data?: Date) {
     this.id = 0;
+    this.data = data;
   }
 
 }

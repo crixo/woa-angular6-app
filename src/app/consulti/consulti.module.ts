@@ -47,7 +47,7 @@ import { MatButtonModule } from '@angular/material';
     ConsultiService, 
     PazientiService
   ],
-  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent],
+  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent, ConsultoFormComponent],
   declarations: [ 
     ConsultoContainer, PazienteContainer, 
     ConsultoFormComponent, ConsultiComponent, 

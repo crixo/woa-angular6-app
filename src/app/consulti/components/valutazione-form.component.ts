@@ -7,12 +7,13 @@ import { VALUTAZIONE_FORM } from '../ui-form/schemas/valutazione.form';
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl: './item-form-popup.html'
+  templateUrl: './item-form.html'
 })
 export class ValutazioneFormComponent implements OnInit {
   public form = new FormGroup({});
   public fields: FormlyFieldConfig[];
   formTitle: string = "Valutazione";
+  useModal: boolean = true;
   @Input() model: Valutazione;
 
   constructor(public activeModal: NgbActiveModal) {}

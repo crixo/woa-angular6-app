@@ -20,4 +20,12 @@ export class MomentService {
     console.log(apiString);
     return apiString;
   }
+
+  getToday() {
+    const m = this.moment();
+    console.log(m);
+    const localString = m.format('DD/MM/YYYY')
+    console.log(localString);
+    return localString;
+  }
 }

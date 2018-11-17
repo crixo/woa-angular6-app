@@ -19,6 +19,7 @@ export class AnamnesiRemoteComponent {
 
   title: string = "Anamnesi Remote";
   editPath: string = "anamnesi-remote";
+  editAction="open";
   gridButtonLabel: string = "edit";
 
   constructor(private momentSvc: MomentService, private modalService: NgbModal) { }

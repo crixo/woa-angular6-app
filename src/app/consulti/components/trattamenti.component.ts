@@ -14,6 +14,7 @@ export class TrattamentiComponent{
   columns = [{name:'data'},{name:'descrizione'}];
   title: string = "Trattamenti";
   gridButtonLabel: string = "edit";
+  editAction="open";
 
   constructor(private modalService: NgbModal) { }
 

@@ -10,8 +10,9 @@ export class Consulto implements IEntity {
   trattamenti: Trattamento[];
   valutazioni: Valutazione[];
 
-  constructor() {
+  constructor(data?: Date) {
     this.id = 0;
+    this.data = data;
   }
 
 }

@@ -8,8 +8,9 @@ export class Esame implements IEntity {
   descrizione: string;
   tipo: Tipo;
   
-  constructor() {
+  constructor(data?: Date) {
     this.id = 0;
+    this.data = data;
   }
 
 }

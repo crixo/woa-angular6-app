@@ -7,12 +7,13 @@ import { TRATTAMENTO_FORM } from '../ui-form/schemas/trattamento.form';
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl: './item-form-popup.html'
+  templateUrl: './item-form.html'
 })
 export class TrattamentoFormComponent implements OnInit {
   public form = new FormGroup({});
   public fields: FormlyFieldConfig[];
   formTitle: string = "Trattamento";
+  useModal: boolean = true;
   @Input() model: Trattamento;
 
   constructor(public activeModal: NgbActiveModal) {

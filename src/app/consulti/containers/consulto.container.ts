@@ -68,12 +68,13 @@ export class ConsultoContainer implements OnInit, OnDestroy {
 
   onEntityToAddSelected(entityName: string){
     console.log(entityName);
+    const today = this.momentSvc.getToday();
     switch(entityName){
       case 'Esame':
-        this.esamiComponent.open( new Esame());
+        this.esamiComponent.open( new Esame(today));
         break;
       case 'Trattamento':
-        this.trattamentiComponent.open( new Trattamento());
+        this.trattamentiComponent.open( new Trattamento(today));
         break;
       case 'Valutazione':
         this.valutazioniComponent.open( new Valutazione());

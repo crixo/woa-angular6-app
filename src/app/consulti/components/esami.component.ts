@@ -17,6 +17,7 @@ export class EsamiComponent implements OnInit {
   //cols: any[];
   title: string = "Esami";
   editPath: string = "esami";
+  editAction="open";
   gridButtonLabel: string = "edit";
 
   constructor(private modalService: NgbModal) { }

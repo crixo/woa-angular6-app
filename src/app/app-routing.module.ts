@@ -34,7 +34,9 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes, { preloadingStrategy: SelectiveStrategy }) // , { enableTracing: true })
+        RouterModule.forRoot(routes, { 
+            preloadingStrategy: SelectiveStrategy, 
+            scrollPositionRestoration: 'enabled'}) // , { enableTracing: true })
     ],
     providers: [ SelectiveStrategy,PazienteResolver ],
     exports: [ RouterModule ]

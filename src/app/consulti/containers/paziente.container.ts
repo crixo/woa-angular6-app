@@ -64,12 +64,13 @@ export class PazienteContainer implements OnInit, OnDestroy {
 
   onEntityToAddSelected(entityName: string){
     console.log(entityName);
+    const today = this.momentSvc.getToday();
     switch(entityName){
       case 'AnamnesiRemota':
-        this.anamnesiRemoteComponent.open( new AnamnesiRemota());
+        this.anamnesiRemoteComponent.open( new AnamnesiRemota(today));
         break;
       case 'Consulto':
-        this.consultiComponent.open( new Consulto());
+        this.consultiComponent.open( new Consulto(today));
         break;
       default:
         console.log(`no entity found w/ name ${entityName}`);
