@@ -11,12 +11,13 @@ env:
   # HEROKU_AUTHTOKEN
   - secure: Qd67zPHdaq3iz9XfwS+Cli9JEpT1fDuXEPmul+e7NXZAhPtkaw3L3sTiTZgPb9/pmWOBFDoAdcVun/CFnsY8PDI2Ogt2rgJlrSqzF0ztw23YDQPiCzglzBJxoVeV50CNujshROtRfe+xc5toOBAr8IutpkxZsBZD7RkM0waA5UlQHfI5nAj1uumFhjSpalm5BY/AeX3c4iazgoR2A7QhBL21Yqze5tA+4qEoJs+Q26OvUqt7CLAV4Y0mvzUcRfYMeSwoZpmISp80Mo22bsaajD9JxFNjUIZtPGKI0YTe8tJo5o9RRCn7xg0oUpX7VxdtC843AI7DeEvNASSPXo6hSuUa2l4WMbJswvh9HmnzE7+VHzJxqlfXsAyt0QJ6S/xGeSw+S3VeD1WralTBdMkW/bWVZ87T+A8WVqMI/oynva1URomMOzvZe6diWcljmzfhxu7ochWxTz/x0x9BChdN0IJdcuvn0K5vb989A7DJdpIP+TLF06GzTFdBn5I2Qs5eN8gwisY7HUhTgSOXS0FNCBa2hpVRVMjy0XfjC5bm3SoeyGuOxRZvl+w898Zxie4LwsZm7+ZgcUvEs47+sdMl1lg8nXgDRS3R0j/wV5er18y6/p+iqmq3S60Pwq/O5TCNPdqT2NLNkuEPxykhydZJnge/VujfbAypnOnXny02SXo=
 before_script:
-- export CI=false
-- export REPO=woa-angular6-app
-- export TAG=latest
-- export HEROKU_TAG=$REPO-heroku:$COMMIT
-- docker build -f Dockerfile -t $HEROKU_TAG .
+  - export CI=false
+  - export REPO=woa-angular6-app
+  - export TAG=latest
+  - export HEROKU_TAG=$REPO-heroku:$COMMIT
+script:
+  - docker build -f Dockerfile -t $HEROKU_TAG .
 after_success:
-- docker tag $HEROKU_TAG registry.heroku.com/$REPO/web
-- docker login --username=$HEROKU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
-- docker push registry.heroku.com/$REPO/web
+  - docker tag $HEROKU_TAG registry.heroku.com/$REPO/web
+  - docker login --username=$HEROKU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
+  - docker push registry.heroku.com/$REPO/web
