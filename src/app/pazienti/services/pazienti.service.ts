@@ -5,13 +5,14 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap, delay } from 'rxjs/operators';
 import { PagedData } from '../../shared/paged-data';
 import { Page } from '../../shared/page';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class PazientiService {
   public CurrentPazienteId: number;
 
   constructor(private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8010/api/pazienti';
+  baseUrl: string = environment.apiBase + '/api/pazienti';
 
   // getUsers() {
   //   return this.http.get<User[]>(this.baseUrl);

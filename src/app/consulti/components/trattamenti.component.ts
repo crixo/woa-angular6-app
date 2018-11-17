@@ -6,7 +6,7 @@ import { TrattamentoFormComponent } from './trattamento-form.component';
 @Component({
     selector: 'trattamenti',
     //templateUrl: './list.html'
-    templateUrl: '/ngx-datatable.html'
+    templateUrl: './ngx-datatable.html'
   })
 export class TrattamentiComponent{
   @Input() list: Trattamento[];

@@ -14,6 +14,7 @@ export class AnamnesiProssimaFormComponent implements OnInit {
   formTitle: string = "Anamnesi Prossima";
   @Input() model: AnamnesiProssima;
   @Output() entitySubmitted = new EventEmitter<AnamnesiProssima>();
+  useModal: boolean = false;
 
   constructor() {
   }

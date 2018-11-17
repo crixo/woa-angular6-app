@@ -6,7 +6,7 @@ import { ValutazioneFormComponent } from './valutazione-form.component';
 @Component({
     selector: 'valutazioni',
     //templateUrl: './list.html'
-    templateUrl: '/ngx-datatable.html'
+    templateUrl: './ngx-datatable.html'
   })
 export class ValutazioniComponent{
   @Input() list: Valutazione[];

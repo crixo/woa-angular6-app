@@ -7,7 +7,7 @@ import { ConsultoFormComponent } from './consulto-form.component';
 
 @Component({
     selector: 'consulti',
-    templateUrl: '/ngx-datatable.html'
+    templateUrl: './ngx-datatable.html'
   })
 export class ConsultiComponent{
   @Input() list: Consulto[];

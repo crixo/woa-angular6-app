@@ -7,7 +7,7 @@ import { Tipo } from '../model/tipo.model';
 
 @Component({
     selector: 'anamnesi-remote',
-    templateUrl: '/ngx-datatable.html'
+    templateUrl: './ngx-datatable.html'
   })
 export class AnamnesiRemoteComponent {
 

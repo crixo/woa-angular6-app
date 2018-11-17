@@ -6,7 +6,7 @@ import { EsameFormComponent } from './esame-form.component';
 
 @Component({
     selector: 'esami',
-    templateUrl: '/ngx-datatable.html'
+    templateUrl: './ngx-datatable.html'
   })
 export class EsamiComponent implements OnInit {
   //@Input() list: Esame[];

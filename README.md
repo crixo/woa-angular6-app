@@ -27,3 +27,16 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## docker
+docker build -t woa-angular6-app .
+docker run -d --rm -p 8012:80 --name woa-angular6-app woa-angular6-app
+
+## heroku
+https://help.heroku.com/PBGP6IDE/how-should-i-generate-an-api-key-that-allows-me-to-use-the-heroku-platform-api
+generate authtoken: heroku authorizations:create
+
+## travis 
+https://docs.travis-ci.com/user/encryption-keys/
+run the following command from the repo root, the secret will added into the .travis.yml file
+travis encrypt SOMEVAR="secretvalue" --add

@@ -4,13 +4,14 @@ import { Observable, of } from 'rxjs';
 import { PazientiService } from '../pazienti/services/pazienti.service';
 import { map, catchError, tap } from 'rxjs/operators';
 import { Consulto, Tipo, IEntity, Esame, PazienteFull, AnamnesiRemota, AnamnesiProssima, Trattamento, Valutazione } from './model';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class ConsultiService {
   constructor(
     private pazientiSvc: PazientiService,
     private http: HttpClient) { }
-  baseUrl: string = 'http://localhost:8010/api';
+  baseUrl: string = environment.apiBase + '/api';
 
   getPaziente(pazienteId:number): Observable<PazienteFull> {
     const uri = this.baseUrl + '/pazienti/' + pazienteId;
