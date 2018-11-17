@@ -6,28 +6,7 @@ import { EsameFormComponent } from './esame-form.component';
 
 @Component({
     selector: 'esami',
-    //templateUrl: './list.html'
-    template: `
-    <h5>Esami</h5>
-    <ngx-datatable
-    class="material"
-    [rows]="list"
-    [columns]="columns"
-    [columnMode]="'force'"
-    [headerHeight]="50"
-    [footerHeight]="20"
-    [rowHeight]="'auto'">
-    <ngx-datatable-column *ngFor="let col of columns" [name]="col.name" [prop]="col.prop">
-    </ngx-datatable-column>
-    <ngx-datatable-column [width]="80">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button (click)="open(row)">
-            <i class="fas fa-edit"></i>
-        </button>
-      </ng-template>
-    </ngx-datatable-column>
-  </ngx-datatable>
-    `
+    templateUrl: '/ngx-datatable.html'
   })
 export class EsamiComponent implements OnInit {
   //@Input() list: Esame[];

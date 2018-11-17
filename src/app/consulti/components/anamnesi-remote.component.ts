@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AnamnesiRemota } from '../model/anamnesi-remota.model';
 import { MomentService } from '../../shared/moment.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -7,34 +7,21 @@ import { Tipo } from '../model/tipo.model';
 
 @Component({
     selector: 'anamnesi-remote',
-    templateUrl: './list.html'
+    templateUrl: '/ngx-datatable.html'
   })
-export class AnamnesiRemoteComponent implements OnInit {
+export class AnamnesiRemoteComponent {
 
   @Input() list: AnamnesiRemota[];
   @Input() tipi: Tipo[];
   @Output() entitySubmitted = new EventEmitter<AnamnesiRemota>();
 
-  cols: any[];
+  columns = [{name:'data'},{name:'descrizione'},{name:'tipo', prop:'tipo.descrizione'}];
 
   title: string = "Anamnesi Remote";
   editPath: string = "anamnesi-remote";
   gridButtonLabel: string = "edit";
 
-
   constructor(private momentSvc: MomentService, private modalService: NgbModal) { }
-
-  ngOnInit() {
-      // this.consultiSvc.getConsulti(1388).toPromise().then(x => {
-      //   x.forEach(c=>c.data = this.momentSvc.toLocalString(c.data));
-      //   this.list = x });
-
-      this.cols = [
-          { field: 'data', header: 'data' },
-          { field: 'descrizione', header: 'descrizione' },
-          { field: 'tipo', subfield:'descrizione', header: 'tipo' },
-      ];
-  }
 
   open(entity: AnamnesiRemota) {
     console.log(this.tipi);
