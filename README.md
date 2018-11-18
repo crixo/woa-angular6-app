@@ -1,5 +1,7 @@
 # WoaAngular6App
 
+[![Build Status](https://travis-ci.org/crixo/woa-angular6-app.svg?branch=master)](https://travis-ci.org/crixo/woa-angular6-app)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
 
 ## Development server
@@ -50,3 +52,7 @@ https://toedter.com/2018/06/02/heroku-docker-deployment-update/
 https://docs.travis-ci.com/user/encryption-keys/
 run the following command from the repo root, the secret will added into the .travis.yml file
 travis encrypt SOMEVAR="secretvalue" --add
+
+## git
+store credentials
+https://stackoverflow.com/questions/34400272/visual-studio-code-always-asking-for-git-credentials
