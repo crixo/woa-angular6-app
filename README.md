@@ -47,6 +47,8 @@ https://devcenter.heroku.com/changelog-items/1426
 heroku container:release web -a woa-angular6-app
 https://medium.com/@javierfernandes/continuous-deployment-con-docker-travis-heroku-c24042fb830b
 https://toedter.com/2018/06/02/heroku-docker-deployment-update/
+how to set nginx port provided by heroku
+https://ntotten.com/2018/07/22/nginx-on-heroku/
 
 ## travis 
 https://docs.travis-ci.com/user/encryption-keys/
