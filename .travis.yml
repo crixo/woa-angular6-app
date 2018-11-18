@@ -30,9 +30,6 @@ script:
   - docker tag $HEROKU_TAG registry.heroku.com/$REPO/web
 deploy:
   provider: script
-  script:
-    # push to heroku registry
-    docker push registry.heroku.com/$REPO/web;
-    #heroku container:release web --app $REPO
-    ./heroku-container-release.sh
-  branch: master
+  script: bash ./heroku-container-release.sh
+  on:
+    branch: master

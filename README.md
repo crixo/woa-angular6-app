@@ -52,6 +52,9 @@ https://toedter.com/2018/06/02/heroku-docker-deployment-update/
 https://docs.travis-ci.com/user/encryption-keys/
 run the following command from the repo root, the secret will added into the .travis.yml file
 travis encrypt SOMEVAR="secretvalue" --add
+add “[ci skip]” to your commit message, and Travis will automatically skip that build. 
+validate .travis.yml locally
+travis lint <.travis.yml  path>
 
 ## git
 store credentials
