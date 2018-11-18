@@ -32,9 +32,19 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 docker build -t woa-angular6-app .
 docker run -d --rm -p 8012:80 --name woa-angular6-app woa-angular6-app
 
+Step 6/13 : RUN npm run build -- --configuration production
+ ---> Running in eec62596c193
+
+> woa-angular6-app@0.0.0 build /usr/src/app
+> ng build "--configuration" "production"
+
 ## heroku
 https://help.heroku.com/PBGP6IDE/how-should-i-generate-an-api-key-that-allows-me-to-use-the-heroku-platform-api
 generate authtoken: heroku authorizations:create
+https://devcenter.heroku.com/changelog-items/1426
+heroku container:release web -a woa-angular6-app
+https://medium.com/@javierfernandes/continuous-deployment-con-docker-travis-heroku-c24042fb830b
+https://toedter.com/2018/06/02/heroku-docker-deployment-update/
 
 ## travis 
 https://docs.travis-ci.com/user/encryption-keys/

@@ -2,22 +2,37 @@ sudo: required
 dist: trusty
 language: node_js
 node_js:
-- '9.0'
+  - '9.0'
+services:
+  - docker
 env:
   global:
-  - COMMIT=${TRAVIS_COMMIT::8}
-  # HEROKU_USERNAME
-  - secure: OAQJ1yA3X6FWzBeahHdpL7y+Orrlte2neYMEc6Wlsh7d3ALuFT7zGQ+I+1WWQ9sQqEavpN4pQP7pCBSnIqsbmoezLDOX42IlNLoNNXLDcxFLsKtWSWpiz2nBw+rNcw3Gob8YMLhQre6ZtbjF+/gEvoXKTP7pw7uLXbVgbYyayeZTOyiFy8lZpxQ+rJqlJ20ElTU4mN2VdT1kGESaHe875lTg3FYcoBwLMl0rUuI2ghOqNwJWOyxX2yJGG8jGwjHXS/9lMvXfgZKcfvz+rl35xBt5+ndMjag8V+zzh2lsCJ8lMN4f34CciKlkK4/PiDyA1iet5TdxxytMMn0Unxy6Dkm0v0lvQmLiFr2FX4U9nUCtuTA7KzDxewXenaMxOWmPAZWHg8mPJoXCq6qIDGLyEETaReTqDh2nkaATP63Um6hjWJ6ab+jmrAlAx3YtQEtEMolbw2ICWxM9gfaohs2XzOYvdP8iBI9Lj5wnwTtUVxeBiUbgiXROd5l34kASDVBoy8eycrF+TaEBsnK+sz2O2ygRnAf1m7PsxiuhjkAa9aoaa2fZ3UNqXRomWlaFcAQ/y5uHnLXBYfc8N6ELQoQEWaZykD/bS8eQLK92it1NaI3Rp6PS3mP13CksNdoWUkSWpFNnF9yHXYcOkEu+S1YepDnbnmVZa+tYAjW2aZPWH9k=
-  # HEROKU_AUTHTOKEN
-  - secure: Qd67zPHdaq3iz9XfwS+Cli9JEpT1fDuXEPmul+e7NXZAhPtkaw3L3sTiTZgPb9/pmWOBFDoAdcVun/CFnsY8PDI2Ogt2rgJlrSqzF0ztw23YDQPiCzglzBJxoVeV50CNujshROtRfe+xc5toOBAr8IutpkxZsBZD7RkM0waA5UlQHfI5nAj1uumFhjSpalm5BY/AeX3c4iazgoR2A7QhBL21Yqze5tA+4qEoJs+Q26OvUqt7CLAV4Y0mvzUcRfYMeSwoZpmISp80Mo22bsaajD9JxFNjUIZtPGKI0YTe8tJo5o9RRCn7xg0oUpX7VxdtC843AI7DeEvNASSPXo6hSuUa2l4WMbJswvh9HmnzE7+VHzJxqlfXsAyt0QJ6S/xGeSw+S3VeD1WralTBdMkW/bWVZ87T+A8WVqMI/oynva1URomMOzvZe6diWcljmzfhxu7ochWxTz/x0x9BChdN0IJdcuvn0K5vb989A7DJdpIP+TLF06GzTFdBn5I2Qs5eN8gwisY7HUhTgSOXS0FNCBa2hpVRVMjy0XfjC5bm3SoeyGuOxRZvl+w898Zxie4LwsZm7+ZgcUvEs47+sdMl1lg8nXgDRS3R0j/wV5er18y6/p+iqmq3S60Pwq/O5TCNPdqT2NLNkuEPxykhydZJnge/VujfbAypnOnXny02SXo=
+    - COMMIT=${TRAVIS_COMMIT::8}
+    # HEROKU_USERNAME
+    - secure: OAQJ1yA3X6FWzBeahHdpL7y+Orrlte2neYMEc6Wlsh7d3ALuFT7zGQ+I+1WWQ9sQqEavpN4pQP7pCBSnIqsbmoezLDOX42IlNLoNNXLDcxFLsKtWSWpiz2nBw+rNcw3Gob8YMLhQre6ZtbjF+/gEvoXKTP7pw7uLXbVgbYyayeZTOyiFy8lZpxQ+rJqlJ20ElTU4mN2VdT1kGESaHe875lTg3FYcoBwLMl0rUuI2ghOqNwJWOyxX2yJGG8jGwjHXS/9lMvXfgZKcfvz+rl35xBt5+ndMjag8V+zzh2lsCJ8lMN4f34CciKlkK4/PiDyA1iet5TdxxytMMn0Unxy6Dkm0v0lvQmLiFr2FX4U9nUCtuTA7KzDxewXenaMxOWmPAZWHg8mPJoXCq6qIDGLyEETaReTqDh2nkaATP63Um6hjWJ6ab+jmrAlAx3YtQEtEMolbw2ICWxM9gfaohs2XzOYvdP8iBI9Lj5wnwTtUVxeBiUbgiXROd5l34kASDVBoy8eycrF+TaEBsnK+sz2O2ygRnAf1m7PsxiuhjkAa9aoaa2fZ3UNqXRomWlaFcAQ/y5uHnLXBYfc8N6ELQoQEWaZykD/bS8eQLK92it1NaI3Rp6PS3mP13CksNdoWUkSWpFNnF9yHXYcOkEu+S1YepDnbnmVZa+tYAjW2aZPWH9k=
+    # HEROKU_AUTHTOKEN
+    - secure: Qd67zPHdaq3iz9XfwS+Cli9JEpT1fDuXEPmul+e7NXZAhPtkaw3L3sTiTZgPb9/pmWOBFDoAdcVun/CFnsY8PDI2Ogt2rgJlrSqzF0ztw23YDQPiCzglzBJxoVeV50CNujshROtRfe+xc5toOBAr8IutpkxZsBZD7RkM0waA5UlQHfI5nAj1uumFhjSpalm5BY/AeX3c4iazgoR2A7QhBL21Yqze5tA+4qEoJs+Q26OvUqt7CLAV4Y0mvzUcRfYMeSwoZpmISp80Mo22bsaajD9JxFNjUIZtPGKI0YTe8tJo5o9RRCn7xg0oUpX7VxdtC843AI7DeEvNASSPXo6hSuUa2l4WMbJswvh9HmnzE7+VHzJxqlfXsAyt0QJ6S/xGeSw+S3VeD1WralTBdMkW/bWVZ87T+A8WVqMI/oynva1URomMOzvZe6diWcljmzfhxu7ochWxTz/x0x9BChdN0IJdcuvn0K5vb989A7DJdpIP+TLF06GzTFdBn5I2Qs5eN8gwisY7HUhTgSOXS0FNCBa2hpVRVMjy0XfjC5bm3SoeyGuOxRZvl+w898Zxie4LwsZm7+ZgcUvEs47+sdMl1lg8nXgDRS3R0j/wV5er18y6/p+iqmq3S60Pwq/O5TCNPdqT2NLNkuEPxykhydZJnge/VujfbAypnOnXny02SXo=
+    - export CI=false
+    - export REPO=woa-angular6-app
+    - export TAG=latest
+    - export HEROKU_TAG=$REPO-heroku:$COMMIT
+before_install:
+  # install heroku CLI
+  #  - wget -qO- https://toolbelt.heroku.com/install.sh | sh  
+  # login to docker registries (heroku)
+  - echo "$HEROKU_AUTHTOKEN" | docker login -u --username=$HEROKU_USERNAME --password-stdin registry.heroku.com
+install:
+  - echo "skip install"
 before_script:
-  - export CI=false
-  - export REPO=woa-angular6-app
-  - export TAG=latest
-  - export HEROKU_TAG=$REPO-heroku:$COMMIT
+  - echo "skip before_script"
 script:
   - docker build -f Dockerfile -t $HEROKU_TAG .
-after_success:
   - docker tag $HEROKU_TAG registry.heroku.com/$REPO/web
-  - docker login --username=$HEROKU_USERNAME --password=$HEROKU_AUTHTOKEN registry.heroku.com
-  - docker push registry.heroku.com/$REPO/web
+deploy:
+  provider: script
+  script:
+    # push to heroku registry
+    docker push registry.heroku.com/$REPO/web;
+    #heroku container:release web --app $REPO
+    ./heroku-container-release.sh
+  branch: master
