@@ -32,7 +32,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## docker
 docker build -t woa-angular6-app .
-docker run -d --rm -p 8012:80 --name woa-angular6-app woa-angular6-app
+docker run -d --rm -p 8012:80 -e MY_ENV=heroku --name woa-angular6-app woa-angular6-app
 
 Step 6/13 : RUN npm run build -- --configuration production
  ---> Running in eec62596c193

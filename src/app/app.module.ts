@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { UserModule } from './user/user.module';
 import { MessageModule } from './messages/message.module';
+import { EnvServiceProvider } from './services/env.service.provider';
 
 //import './string-prototypes';
 
@@ -28,7 +29,7 @@ import { MessageModule } from './messages/message.module';
   //exports: [BrowserAnimationsModule],
   declarations: [ AppComponent ],
   providers: [
-
+    EnvServiceProvider
   ],
   bootstrap:    [ AppComponent ]
 })

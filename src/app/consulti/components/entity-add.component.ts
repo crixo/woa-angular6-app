@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { addButtonAnimations } from '../../add-button.animations';
+import { addButtonAnimations } from '../../services/add-button.animations';
 import { EntityType } from '../model';
 
 @Component({

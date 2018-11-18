@@ -17,6 +17,7 @@ export const PAZIENTE_FORM = (province, disabled = false) => ({
               key: 'nome',
               templateOptions: {
                 label: 'Nome',
+                required: true,
               },
             },
             {
@@ -25,6 +26,7 @@ export const PAZIENTE_FORM = (province, disabled = false) => ({
               key: 'cognome',
               templateOptions: {
                 label: 'Cognome',
+                required: true,
               },
               expressionProperties: {
                 'templateOptions.disabled': '!model.nome',
@@ -47,9 +49,10 @@ export const PAZIENTE_FORM = (province, disabled = false) => ({
               'date',
               'dataDiNascita',
               {
-                label: 'Data di nascita',
+                label: 'Data di nascita *',
                 placeholder: '__/__/____',
-                disabled: disabled
+                disabled: disabled,
+                required: true,
               },
               {
                 className: 'col-3'

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 //import { AuthGuard } from './user/auth-guard.service';
-import { SelectiveStrategy } from './selective-strategy.service';
+import { SelectiveStrategy } from './services/selective-strategy.service';
 import { PazienteFormComponent } from './pazienti/components/paziente-form.component';
 import { PazienteResolver } from './pazienti/services/paziente-resolver.service';
 

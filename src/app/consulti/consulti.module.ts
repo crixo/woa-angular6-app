@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { ConsultiService } from './consulti.service';
 import { PazientiService } from '../pazienti/services/pazienti.service';
-import { TableModule } from 'primeng/table';
 import { PazienteContainer, ConsultoContainer } from './containers/index';
 import { AnamnesiRemoteComponent, 
   AnamnesiRemotaFormComponent, 
@@ -23,7 +22,6 @@ import { MatButtonModule } from '@angular/material';
 
 @NgModule({
   imports: [ 
-    TableModule,
     SharedModule,
     NgbModule,
     MatButtonModule,

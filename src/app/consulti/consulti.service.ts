@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { PazientiService } from '../pazienti/services/pazienti.service';
-import { map, catchError, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Consulto, Tipo, IEntity, Esame, PazienteFull, AnamnesiRemota, AnamnesiProssima, Trattamento, Valutazione } from './model';
-import { environment } from '../../environments/environment';
+import { EnvService } from '../services/env.service';
 
 @Injectable()
 export class ConsultiService {
-  constructor(
-    private pazientiSvc: PazientiService,
-    private http: HttpClient) { }
-  baseUrl: string = environment.apiBase + '/api';
+  baseUrl: string;
 
-  getPaziente(pazienteId:number): Observable<PazienteFull> {
+  constructor(private http: HttpClient, private env: EnvService) {
+    this.baseUrl = this.env.apiBaseUrl + '/api';
+  }
+
+  getPaziente(pazienteId: number): Observable<PazienteFull> {
     const uri = this.baseUrl + '/pazienti/' + pazienteId;
     console.log(uri);
     return this.http.get<PazienteFull>(uri);
@@ -29,33 +29,33 @@ export class ConsultiService {
     const uri = this.baseUrl + '/lookups/tipo-esami';
     console.log(uri);
     return this.http.get<Tipo[]>(uri);
-  }  
+  }
 
-  storeConsulto(entity: Consulto){
+  storeConsulto(entity: Consulto) {
     return this.store(entity, 'consulti');
-  }  
+  }
 
-  storeAnamnesiRemota(entity: AnamnesiRemota){
+  storeAnamnesiRemota(entity: AnamnesiRemota) {
     return this.store(entity, 'anamnesi-remote');
-  }  
+  }
 
-  storeAnamnesiProssima(entity: AnamnesiProssima){
+  storeAnamnesiProssima(entity: AnamnesiProssima) {
     return this.store(entity, 'anamnesi-prossime');
-  }    
+  }
 
-  storeEsame(entity: Esame){
+  storeEsame(entity: Esame) {
     return this.store(entity, 'esami');
-  } 
+  }
 
-  storeTrattamento(entity: Trattamento){
+  storeTrattamento(entity: Trattamento) {
     return this.store(entity, 'trattamenti');
-  } 
+  }
 
-  storeValutazione(entity: Valutazione){
+  storeValutazione(entity: Valutazione) {
     return this.store(entity, 'valutazioni');
-  } 
+  }
 
-  private store(entity: IEntity, segment: string){
+  private store(entity: IEntity, segment: string) {
     console.log(entity)
     console.log(entity.id)
     console.log(`${this.baseUrl}/${segment}`)
@@ -64,20 +64,20 @@ export class ConsultiService {
       : this.http.post(`${this.baseUrl}/${segment}`, entity);
 
     return obs
-        .pipe(
-            tap((entity: Consulto) => console.log(`stored ${segment} item w/ id=${entity.id}`)),
-            catchError(this.handleError<any>(`store ${segment} item`)));
+      .pipe(
+        tap((entity: Consulto) => console.log(`stored ${segment} item w/ id=${entity.id}`)),
+        catchError(this.handleError<any>(`store ${segment} item`)));
   }
 
-  private handleError<T> (operation = 'operation', result?: T) {
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
+
       // TODO: send the error to remote logging infrastructure
       console.error(error); // log to console instead
-  
+
       // TODO: better job of transforming error for user consumption
       console.log(`${operation} failed: ${error.message}`);
-  
+
       // Let the app keep running by returning an empty result.
       return of(result as T);
     };
