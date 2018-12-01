@@ -36,7 +36,7 @@ export class AlertService {
     }
 
     error(message: string) {
-        this.alert(new Alert({ message, type: AlertType.error }));
+        this.alert(new Alert({ message, type: AlertType.danger }));
     }
 
     info(message: string) {

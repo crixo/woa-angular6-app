@@ -6,16 +6,17 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 
 import { SharedModule } from '../shared/shared.module';
+import { LoginContainer } from './login.container';
 
 @NgModule({
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginContainer }
     ])
   ],
   declarations: [
-    LoginComponent
+    LoginComponent, LoginContainer
   ],
   providers: [
     AuthService,

@@ -16,6 +16,12 @@ nav li {
   cursor: pointer; 
 }
 
+span.welcome {
+  display: block;
+  padding: .5rem 1rem;
+  cursor: auto; 
+}
+
 /* Fade transition */
 /*pm-app div {
   animation-duration: .5s;

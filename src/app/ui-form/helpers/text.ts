@@ -1,5 +1,5 @@
-import { Field } from '../../../../ui-form/helpers/fields';
-import {capitalize} from '../../../../services/string-prototypes';
+import { Field } from './fields';
+import {capitalize} from '../../services/string-prototypes';
 
 export const TEXT = (
               disabled=false, 

@@ -7,13 +7,14 @@ import { PazienteFormComponent } from './pazienti/components/paziente-form.compo
 import { PazienteResolver } from './pazienti/services/paziente-resolver.service';
 
 import { WelcomeComponent } from './welcome/welcome.component';
+import { AuthGuard } from './user/auth-guard.service';
 //import { PageNotFoundComponent } from './page-not-found.component';
 
 
 const routes: Routes = [
     {
         path: 'pazienti',
-        //canActivate: [ AuthGuard ],
+        canActivate: [ AuthGuard ],
         data: { preload: false },
         loadChildren: '../app/pazienti/pazienti.module#PazientiModule'
     },

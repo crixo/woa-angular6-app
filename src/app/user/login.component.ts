@@ -1,33 +1,33 @@
-import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
-
-import { AuthService } from './auth.service';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { NgForm, FormGroup } from '@angular/forms';
+import { Credentials } from './user.model'
+import { LOGIN_FORM } from './login.form';
+import { FormlyFieldConfig } from '@ngx-formly/core';
 
 @Component({
-    templateUrl: 'login.component.html'
+    selector: 'login-form',
+    template: `
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <formly-form [model]="model" [fields]="fields" [form]="form"></formly-form>
+    </form>    
+    `
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit   {
+    public form = new FormGroup({});
+    public fields: FormlyFieldConfig[];
     errorMessage: string;
     pageTitle = 'Log In';
-    userName: string;
+    model: Credentials = new Credentials();
+    @Output() credentialsSubmitted = new EventEmitter<Credentials>();
 
-    constructor(private authService: AuthService,
-                private router: Router) { }
-
-    login(loginForm: NgForm) {
-        if (loginForm && loginForm.valid) {
-            let userName = loginForm.form.value.userName;
-            let password = loginForm.form.value.password;
-            this.authService.login(userName, password);
-
-            if (this.authService.redirectUrl) {
-                this.router.navigateByUrl(this.authService.redirectUrl);
-            } else {
-                this.router.navigate(['/pazienti']);
-            }
-        } else {
-            this.errorMessage = 'Please enter a user name and password.';
-        };
+    ngOnInit() {
+        this.fields= [
+            ...LOGIN_FORM().template
+        ]; 
     }
+
+    public submit() {
+        console.log(this.model);
+        this.credentialsSubmitted.emit(this.model);
+      }  
 }

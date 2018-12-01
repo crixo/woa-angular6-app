@@ -1,2 +1,2 @@
 export * from './description';
-export * from './text';
+export * from '../../../../ui-form/helpers/text';
