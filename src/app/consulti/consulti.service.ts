@@ -4,19 +4,26 @@ import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Consulto, Tipo, IEntity, Esame, PazienteFull, AnamnesiRemota, AnamnesiProssima, Trattamento, Valutazione } from './model';
 import { EnvService } from '../services/env.service';
+import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
 
 @Injectable()
 export class ConsultiService {
   baseUrl: string;
+  private handleError: HandleError;
 
-  constructor(private http: HttpClient, private env: EnvService) {
+  constructor(private http: HttpClient, private env: EnvService, httpErrorHandler: HttpErrorHandler) {
     this.baseUrl = this.env.apiBaseUrl + '/api';
+    this.handleError = httpErrorHandler.createHandleError('ConsultiService');
   }
 
   getPaziente(pazienteId: number): Observable<PazienteFull> {
     const uri = this.baseUrl + '/pazienti/' + pazienteId;
     console.log(uri);
-    return this.http.get<PazienteFull>(uri);
+    return this.http.get<PazienteFull>(uri)      
+      .pipe(
+        //tap((entity: Consulto) => console.log(`stored ${segment} item w/ id=${entity.id}`)),
+        catchError(this.handleError(`get paziente ${pazienteId}`, null))
+      );
   }
 
   getTipiAnamnesiRemota(): Observable<Tipo[]> {
@@ -66,20 +73,6 @@ export class ConsultiService {
     return obs
       .pipe(
         tap((entity: Consulto) => console.log(`stored ${segment} item w/ id=${entity.id}`)),
-        catchError(this.handleError<any>(`store ${segment} item`)));
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+        catchError(this.handleError(`store ${segment} item`, null)));
   }
 }

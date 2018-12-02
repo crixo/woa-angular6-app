@@ -46,14 +46,16 @@ export class ConsultoContainer implements OnInit, OnDestroy {
 
         this.subs.push(
           this.consultiSvc.getPaziente(pazienteId).subscribe(data=>{
-            this.paziente = data;
-            let consulto = data.consulti.find(x=>x.id === consultoId);
-            consulto.data = this.momentSvc.toLocalString(consulto.data);
-            
-            consulto.esami.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
-            consulto.trattamenti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
-            
-            this.consulto = consulto;
+            if(data){
+              this.paziente = data;
+              let consulto = data.consulti.find(x=>x.id === consultoId);
+              consulto.data = this.momentSvc.toLocalString(consulto.data);
+              
+              consulto.esami.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
+              consulto.trattamenti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
+              
+              this.consulto = consulto;
+            }
           })
         );
       
@@ -90,11 +92,8 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     this.subs.push(
       this.consultiSvc.storeConsulto(dto).subscribe((result) => {
         console.log(result);
-        console.log('consulto salvato con successo');
+        if(result) console.log('consulto salvato con successo');
         //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err);
       })
     );
   }
@@ -107,11 +106,8 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     this.subs.push(
       this.consultiSvc.storeAnamnesiProssima(dto).subscribe((result) => {
         console.log(result);
-        console.log('anamnesi prossima salvato con successo');
+        if(result) console.log('anamnesi prossima salvato con successo');
         //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err);
       })
     );    
   }
@@ -158,10 +154,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
         console.log(newList);
         callback(newList);
         //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
-        console.log(`entita' salvata con successo`);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err);
+        if(result) console.log(`entita' salvata con successo`);
       })
     );
   }  

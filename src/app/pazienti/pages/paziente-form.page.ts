@@ -52,10 +52,9 @@ export class PazienteFormPage implements OnInit, OnDestroy {
     this.subs.push(
       this.pazientiService.update(pazienteDto).subscribe((result) => {
         console.log(result);
-        this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err);
+        if(result){
+          this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
+        }
       })
     );
   }

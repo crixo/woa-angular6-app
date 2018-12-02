@@ -16,6 +16,7 @@ import { MessageModule } from './messages/message.module';
 import { EnvServiceProvider } from './services/env.service.provider';
 import { StorageServiceModule } from 'angular-webstorage-service';
 import { LocalStorageService } from './services/local-storage.service';
+import { HttpErrorHandler } from './services/http-error-handler.service';
 
 //import './string-prototypes';
 
@@ -27,12 +28,12 @@ import { LocalStorageService } from './services/local-storage.service';
     AppRoutingModule,
     UserModule,
     MessageModule,
-    StorageServiceModule
+    StorageServiceModule,
    ],
   //exports: [BrowserAnimationsModule],
   declarations: [ AppComponent ],
   providers: [
-    EnvServiceProvider, LocalStorageService
+    EnvServiceProvider, LocalStorageService, HttpErrorHandler
   ],
   bootstrap:    [ AppComponent ]
 })

@@ -6,13 +6,21 @@ import { map, catchError, tap, delay } from 'rxjs/operators';
 import { PagedData } from '../../shared/paged-data';
 import { Page } from '../../shared/page';
 import { EnvService } from 'src/app/services/env.service';
+import { HttpErrorHandler, HandleError } from 'src/app/services/http-error-handler.service';
 
 @Injectable()
 export class PazientiService {
   public CurrentPazienteId: number;
   baseUrl: string;
-  constructor(private http: HttpClient, private env: EnvService) {
+  private handleError: HandleError;
+  
+  constructor(
+    private http: HttpClient, 
+    private env: EnvService,
+    httpErrorHandler: HttpErrorHandler) {
     this.baseUrl = this.env.apiBaseUrl + '/api/pazienti';
+
+    this.handleError = httpErrorHandler.createHandleError('PazientiService');
   }
 
   getPazienteById(id: number) {
@@ -44,7 +52,9 @@ export class PazientiService {
     return this.http.get<Paziente>(url)
       .pipe(
         //delay(2000),
-        map(data => this.getPagedData(page, data)));
+        map(data => this.getPagedData(page, data)),
+        catchError(this.handleError('getPazientiResults', null))
+      );
 
     //of(companyData).pipe(map(data => this.getPagedData(page)));
   }
@@ -77,24 +87,10 @@ export class PazientiService {
     return obs
       .pipe(
         tap((paziente: Paziente) => console.log(`stored paziente w/ id=${paziente.id}`)),
-        catchError(this.handleError<any>('store paziente')));
+        catchError(this.handleError('store paziente', null)));
   }
 
   // deleteUser(id: number) {
   //   return this.http.delete(this.baseUrl + '/' + id);
   // }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      console.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 }

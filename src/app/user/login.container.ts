@@ -27,10 +27,8 @@ export class LoginContainer implements OnInit, OnDestroy {
     this.subs.push(
       this.authService.login(credentials).subscribe((result) => {
         console.log(result);
-        this.router.navigate(['/pazienti']);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err.errorMessage);
+        if(result)
+          this.router.navigate(['/pazienti']);
       })
     );   
   }

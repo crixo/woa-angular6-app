@@ -7,6 +7,7 @@ import { HttpClient } from '@angular/common/http';
 import { EnvService } from '../services/env.service';
 import { LocalStorageService } from '../services/local-storage.service';
 import { MomentService } from '../shared/moment.service';
+import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
 
 const USER_STORAGE_KEY: string = "USER_STORAGE_KEY";
 const USER_STORAGE_EXPIRE_KEY: string = "USER_STORAGE_EXPIRE_KEY";
@@ -16,9 +17,16 @@ export class AuthService {
     currentUser: IUser;
     redirectUrl: string;
     baseUrl: string;
+    private handleError: HandleError;
 
-    constructor(private http: HttpClient, private env: EnvService, private localeStorageSvc: LocalStorageService, private momentSvc: MomentService) {
+    constructor(private http: HttpClient, 
+        private env: EnvService, 
+        private localeStorageSvc: LocalStorageService, 
+        private momentSvc: MomentService,
+        httpErrorHandler: HttpErrorHandler
+        ) {
         this.baseUrl = this.env.apiBaseUrl + '/api';
+        this.handleError = httpErrorHandler.createHandleError('AuthService');
         const expirationDate = this.localeStorageSvc.get(USER_STORAGE_EXPIRE_KEY);
         console.log(`user auth expiration date: ${expirationDate}`);
         if(expirationDate && this.momentSvc.isUserAuthExpired(expirationDate)){
@@ -39,7 +47,7 @@ export class AuthService {
                 console.log(`authentication succeeded for ${credentials.userName}`);  
                 this.setCurrentUser(res.id, res.userName);
             }),
-            catchError(this.handleError<any>(`login`))
+            catchError(this.handleError('login', null))
         );
     }
 
@@ -58,23 +66,5 @@ export class AuthService {
         this.currentUser = user;      
         this.localeStorageSvc.store(USER_STORAGE_KEY, user);
         this.localeStorageSvc.store(USER_STORAGE_EXPIRE_KEY, this.momentSvc.getUserAuthExpirationDate());
-    }
-
-    private handleError<T>(operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-    
-          // TODO: send the error to remote logging infrastructure
-          console.error(error); // log to console instead
-    
-          // TODO: better job of transforming error for user consumption
-          console.log(`${operation} failed: ${error.message}`);
-
-          //console.log(error.error.errorMessage)
-
-          throw error.error;// subscriber has to handle the error
-
-          // Let the app keep running by returning an empty result.
-          //return of(result as T); // subscriber does not receive any error but result instead
-        };
-      }    
+    } 
 }
