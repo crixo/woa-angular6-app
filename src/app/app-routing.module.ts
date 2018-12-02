@@ -20,7 +20,7 @@ const routes: Routes = [
     },
   {
       path: 'paziente/:pazienteId',
-      //canActivate: [ AuthGuard ],
+      canActivate: [ AuthGuard ],
       data: { preload: false },
       loadChildren: '../app/consulti/consulti.module#ConsultiModule'
   },

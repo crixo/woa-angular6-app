@@ -28,4 +28,20 @@ export class MomentService {
     console.log(localString);
     return localString;
   }
+
+  getUserAuthExpirationDate() {
+    const m = this.moment();
+    //const expirationDate = m.add(15,'days').toString();
+    const expirationDate = m.add(15,'days').format()
+    console.log(expirationDate);
+    return expirationDate;
+  }  
+
+  isUserAuthExpired(userAuthExpirationDate: string) {
+    const m = this.moment(userAuthExpirationDate);
+    console.log(m);
+    const now = this.moment();
+    console.log(now);
+    return now.isAfter(m);
+  }    
 }
