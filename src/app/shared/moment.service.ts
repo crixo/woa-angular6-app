@@ -5,27 +5,27 @@ export class MomentService {
   constructor(@Inject('moment') private moment) { }
 
   toLocalString(dateFromApi: any) {
-    console.log(dateFromApi);
+    //console.log(dateFromApi);
     const m = this.moment(dateFromApi);
-    console.log(m);
+    //console.log(m);
     const localString = m.format('DD/MM/YYYY');
-    console.log(localString);
+    //console.log(localString);
     return localString;
   }
 
   toApiString(localString: any) {
     const m = this.moment(localString, 'DD/MM/YYYY');
-    console.log(m);
+    //console.log(m);
     const apiString = m.format('YYYY-MM-DDTHH:mm:ss')
-    console.log(apiString);
+    //console.log(apiString);
     return apiString;
   }
 
   getToday() {
     const m = this.moment();
-    console.log(m);
+    //console.log(m);
     const localString = m.format('DD/MM/YYYY')
-    console.log(localString);
+    //console.log(localString);
     return localString;
   }
 
@@ -33,15 +33,13 @@ export class MomentService {
     const m = this.moment();
     //const expirationDate = m.add(15,'days').toString();
     const expirationDate = m.add(15,'days').format()
-    console.log(expirationDate);
+    //console.log(expirationDate);
     return expirationDate;
   }  
 
   isUserAuthExpired(userAuthExpirationDate: string) {
     const m = this.moment(userAuthExpirationDate);
-    console.log(m);
     const now = this.moment();
-    console.log(now);
     return now.isAfter(m);
   }    
 }

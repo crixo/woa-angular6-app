@@ -1,10 +1,10 @@
 import { Field } from '../helpers/fields';
 
-export const PAZIENTE_FORM = (province, disabled = false) => ({
+export const PAZIENTE_FORM = (panel:string, province, disabled = false) => ({
   id: 'PAZIENTE',
   template: [
     {
-      wrappers: ['panel'],
+      wrappers: [panel],
       templateOptions: {
         label: 'Paziente'
       },

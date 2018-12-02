@@ -34,8 +34,9 @@ export class EsamiComponent implements OnInit {
   open(entity: Esame) {
     console.log(this.tipi);
     console.log(entity);
+    const model = {...entity};
     const modalRef = this.modalService.open(EsameFormComponent);
-    modalRef.componentInstance.model = entity;
+    modalRef.componentInstance.model = model;
     modalRef.componentInstance.tipi = this.tipi;
     modalRef.result.then((data) => {
       this.entitySubmitted.emit(data);

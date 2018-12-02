@@ -20,8 +20,9 @@ export class ValutazioniComponent{
 
   open(entity: Valutazione) {
     console.log(entity);
+    const model = {...entity};
     const modalRef = this.modalService.open(ValutazioneFormComponent);
-    modalRef.componentInstance.model = entity;
+    modalRef.componentInstance.model = model;
     modalRef.result.then((data) => {
       this.entitySubmitted.emit(data);
     }, (reason) => {

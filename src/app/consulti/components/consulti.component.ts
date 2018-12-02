@@ -28,8 +28,9 @@ export class ConsultiComponent{
 
   open(entity: Consulto) {
     console.log(entity);
+    const model = {...entity};
     const modalRef = this.modalService.open(ConsultoFormComponent);
-    modalRef.componentInstance.model = entity;
+    modalRef.componentInstance.model = model;
     modalRef.result.then((data) => {
       console.log(data);
       this.entitySubmitted.emit(data);

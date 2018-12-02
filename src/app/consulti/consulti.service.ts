@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, tap, map } from 'rxjs/operators';
 import { Consulto, Tipo, IEntity, Esame, PazienteFull, AnamnesiRemota, AnamnesiProssima, Trattamento, Valutazione } from './model';
 import { EnvService } from '../services/env.service';
 import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
@@ -21,6 +21,7 @@ export class ConsultiService {
     console.log(uri);
     return this.http.get<PazienteFull>(uri)      
       .pipe(
+        map(x => Object.assign(new PazienteFull(), x)),
         //tap((entity: Consulto) => console.log(`stored ${segment} item w/ id=${entity.id}`)),
         catchError(this.handleError(`get paziente ${pazienteId}`, null))
       );

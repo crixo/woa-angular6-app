@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AnamnesiRemoteComponent } from '../components/anamnesi-remote.component';
 import { ConsultiComponent } from '../components/consulti.component';
+import { Paziente } from 'src/app/pazienti/model/paziente.model';
+import { PazientiService } from 'src/app/pazienti/services/pazienti.service';
 import { AlertService } from 'src/app/messages/alert.service';
 
 @Component({
@@ -16,6 +18,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
   constructor(private consultiSvc: ConsultiService, 
     private route: ActivatedRoute, 
     private momentSvc: MomentService, 
+    private pazientiService: PazientiService,
     private alertService: AlertService) { }
 
   paziente: PazienteFull = <PazienteFull>{};
@@ -42,14 +45,17 @@ export class PazienteContainer implements OnInit, OnDestroy {
 
         this.subs.push(
           this.consultiSvc.getPaziente(pazienteId).subscribe(data=>{
-            this.paziente = data;
-            let consulti = data.consulti;
-            consulti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
-            this.consulti = consulti;
-      
-            let anamnesi = data.anamnesiRemote;
-            anamnesi.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
-            this.anamnesiRemote = anamnesi;      
+            if(data){
+              this.paziente = data;
+              this.paziente.dataDiNascita = this.momentSvc.toLocalString(this.paziente.dataDiNascita);
+              let consulti = data.consulti;
+              consulti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
+              this.consulti = consulti;
+        
+              let anamnesi = data.anamnesiRemote;
+              anamnesi.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
+              this.anamnesiRemote = anamnesi;      
+            }
           })      
         );
 
@@ -77,9 +83,24 @@ export class PazienteContainer implements OnInit, OnDestroy {
     }
   }
 
+  onPazienteSubmitted(paziente: Paziente){
+    let pazienteDto = { ...paziente }
+    pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
+    console.log(pazienteDto);
+    this.subs.push(
+      this.pazientiService.update(pazienteDto).subscribe((result) => {
+        console.log(result);
+        if(result){
+          this.paziente.update(paziente);
+          this.alertService.success(`paziente ${result.cognome} salvato con successo`);
+        }
+      })
+    );
+  }  
+
   onConsultoSubmitted(entity: Consulto){
     this.onEntitySubmitted(
-      entity, 
+      entity,
       [...this.consulti], 
       (dto)=>this.consultiSvc.storeConsulto(dto), 
       (newList) => this.consulti = newList, 
@@ -88,7 +109,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
 
   onAnamnesiRemotaSubmitted(entity: AnamnesiRemota){
     this.onEntitySubmitted(
-      entity, 
+      entity,
       [...this.anamnesiRemote], 
       (dto)=>this.consultiSvc.storeAnamnesiRemota(dto), 
       (newList) => this.anamnesiRemote = newList, 
@@ -102,16 +123,15 @@ export class PazienteContainer implements OnInit, OnDestroy {
     this.subs.push(
       apiCall(dto).subscribe((result) => {
         console.log(result);
-        result.data = this.momentSvc.toLocalString(result.data);
-        let newList = currentList.filter(x=>x.id !== result.id);
-        newList.push(toModel(result));
-        newList.sort((a, b) => a.id - b.id);
-        console.log(newList);
-        callback(newList);
-        //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
-      }, (err) => {
-        console.log(err);
-        this.alertService.error(err);
+        if(result){
+          result.data = this.momentSvc.toLocalString(result.data);
+          let newList = currentList.filter(x=>x.id !== result.id);
+          newList.push(toModel(result));
+          newList.sort((a, b) => a.id - b.id);
+          console.log(newList);
+          callback(newList);
+          this.alertService.success(`modifica avvenuta con successo`);
+        }
       })
     );
   }  

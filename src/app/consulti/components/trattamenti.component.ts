@@ -20,8 +20,9 @@ export class TrattamentiComponent{
 
   open(entity: Trattamento) {
     console.log(entity);
+    const model = {...entity};
     const modalRef = this.modalService.open(TrattamentoFormComponent);
-    modalRef.componentInstance.model = entity;
+    modalRef.componentInstance.model = model;
     modalRef.result.then((data) => {
       this.entitySubmitted.emit(data);
     }, (reason) => {

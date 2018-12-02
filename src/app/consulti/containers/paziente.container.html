@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm">
-      <paziente-details [paziente]="paziente"></paziente-details>
+      <paziente-details [paziente]="paziente" (pazienteSubmitted)="onPazienteSubmitted($event)"></paziente-details>
     </div>
     <div class="col-sm">
       <anamnesi-remote (entitySubmitted)="onAnamnesiRemotaSubmitted($event)" [list]="anamnesiRemote" [tipi]="tipiAnamnesiRemote"></anamnesi-remote>

@@ -22,13 +22,14 @@ export class AnamnesiRemoteComponent {
   editAction="open";
   gridButtonLabel: string = "edit";
 
-  constructor(private momentSvc: MomentService, private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal) { }
 
   open(entity: AnamnesiRemota) {
     console.log(this.tipi);
     console.log(entity);
+    const model = {...entity};
     const modalRef = this.modalService.open(AnamnesiRemotaFormComponent);
-    modalRef.componentInstance.model = entity;
+    modalRef.componentInstance.model = model;
     modalRef.componentInstance.tipi = this.tipi;
     modalRef.result.then((data) => {
       console.log(data);

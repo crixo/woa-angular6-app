@@ -18,6 +18,8 @@ import { AnamnesiRemoteComponent,
   ValutazioneFormComponent } from './components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material';
+import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
+import { PazienteFormPage } from '../pazienti/pages/paziente-form.page';
 
 
 @NgModule({
@@ -45,7 +47,7 @@ import { MatButtonModule } from '@angular/material';
     ConsultiService, 
     PazientiService
   ],
-  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent, ConsultoFormComponent],
+  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent, ConsultoFormComponent, PazienteFormComponent],
   declarations: [ 
     ConsultoContainer, PazienteContainer, 
     ConsultoFormComponent, ConsultiComponent, 

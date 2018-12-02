@@ -7,13 +7,14 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { WoaGridComponent } from './woa-grid/woa-grid.component';
 
 import { PazienteDetailsComponent } from '../pazienti/components/paziente-details.component';
+import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
 
 @NgModule({
   imports: [ 
     CommonModule, UiFormModule, NgxDatatableModule
      ],
-  exports:[UiFormModule, CommonModule, NgxDatatableModule, WoaGridComponent, PazienteDetailsComponent],
-  declarations: [ WoaGridComponent, PazienteDetailsComponent ],
+  exports:[UiFormModule, CommonModule, NgxDatatableModule, WoaGridComponent, PazienteDetailsComponent, PazienteFormComponent],
+  declarations: [ WoaGridComponent, PazienteDetailsComponent, PazienteFormComponent ],
   providers: [
     { provide: 'moment', useFactory: (): any => moment },
     MomentService
