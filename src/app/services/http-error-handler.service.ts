@@ -37,7 +37,7 @@ export class HttpErrorHandler {
 
       const message = (error.error.errorMessage) ?
         error.error.errorMessage :
-        `an error occurred on ${serviceName} -> ${operation}`;
+        `an error occurred on ${serviceName} -> ${operation} -> ${error.message}`;
 
       this.alertSvc.error(message);
 

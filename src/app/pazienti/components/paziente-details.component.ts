@@ -1,16 +1,28 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output, OnDestroy } from '@angular/core';
 import { Paziente } from '../model/paziente.model';
 import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { PazienteFormComponent } from './paziente-form.component';
 import { PazienteFormPage } from '../pages/paziente-form.page';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'paziente-details',
   templateUrl: './paziente-details.component.html'
 })
-export class PazienteDetailsComponent  {
+export class PazienteDetailsComponent implements OnDestroy  {
+
+  _pazientePersisted
+  _modalRef: NgbModalRef;
+  private subs: Subscription[] = new Array<Subscription>();
   @Input() paziente: Paziente = <Paziente>{};
+  //@Input() pazientePersisted: Boolean;
+  @Input('pazientePersisted') set pazientePersisted(value: boolean) {
+    this._pazientePersisted = value;
+    if(value){
+      this._modalRef.close();
+    }
+  }
   @Output() pazienteSubmitted = new EventEmitter<Paziente>();
 
   constructor(
@@ -26,13 +38,23 @@ export class PazienteDetailsComponent  {
   editPaziente(entity: Paziente) {
     console.log(entity);
     const model = {...entity};
-    const modalRef = this.modalService.open(PazienteFormComponent, { size: 'lg' });
-    modalRef.componentInstance.model = model;
-    modalRef.result.then((data) => {
+    this._modalRef = this.modalService.open(PazienteFormComponent, { size: 'lg' });
+    this._modalRef.componentInstance.model = model;
+    this.subs.push(this._modalRef.componentInstance.modelSubmitted.subscribe(($e) => {
+      const data = $e;
       console.log(data);
       this.pazienteSubmitted.emit(data);
-    }, (reason) => {
-      // on dismiss
-    });
-  } 
+    })  
+    // this._modalRef.result.then((data) => {
+    //   console.log(data);
+    //   this.pazienteSubmitted.emit(data);
+    // }, (reason) => {
+    //   // on dismiss
+    // });
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(s => s.unsubscribe());
+  }  
 }

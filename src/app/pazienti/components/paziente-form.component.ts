@@ -39,9 +39,9 @@ export class PazienteFormComponent implements OnInit {
 
   public submit() {
     console.log(this.model);
-    if(this.activeModal)
-      this.activeModal.close(this.model);
-    else
+    // if(this.activeModal)
+    //   this.activeModal.close(this.model);
+    // else
       this.modelSubmitted.emit(this.model);
   }
 

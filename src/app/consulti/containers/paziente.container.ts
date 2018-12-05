@@ -9,6 +9,7 @@ import { ConsultiComponent } from '../components/consulti.component';
 import { Paziente } from 'src/app/pazienti/model/paziente.model';
 import { PazientiService } from 'src/app/pazienti/services/pazienti.service';
 import { AlertService } from 'src/app/messages/alert.service';
+import { PazienteDetailsComponent } from 'src/app/pazienti/components/paziente-details.component';
 
 @Component({
   templateUrl: 'paziente.container.html'
@@ -26,6 +27,9 @@ export class PazienteContainer implements OnInit, OnDestroy {
   anamnesiRemote: AnamnesiRemota[];
   tipiAnamnesiRemote: Tipo[];
   private subs: Subscription[] = new Array<Subscription>();
+
+  @ViewChild(PazienteDetailsComponent)
+  private pazienteDetailsComponent: PazienteDetailsComponent;
 
   @ViewChild(AnamnesiRemoteComponent)
   private anamnesiRemoteComponent: AnamnesiRemoteComponent;
@@ -90,7 +94,9 @@ export class PazienteContainer implements OnInit, OnDestroy {
     this.subs.push(
       this.pazientiService.update(pazienteDto).subscribe((result) => {
         console.log(result);
+        
         if(result){
+          this.pazienteDetailsComponent.pazientePersisted = true;
           this.paziente.update(paziente);
           this.alertService.success(`paziente ${result.cognome} salvato con successo`);
         }
@@ -112,7 +118,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
       entity,
       [...this.anamnesiRemote], 
       (dto)=>this.consultiSvc.storeAnamnesiRemota(dto), 
-      (newList) => this.anamnesiRemote = newList, 
+      (newList) => { this.anamnesiRemote = newList; this.anamnesiRemoteComponent.entityPersisted=true;}, 
       (dto) => { dto.tipo = this.tipiAnamnesiRemote.find(x=>x.id==dto.tipoId); return dto;});
   }
 

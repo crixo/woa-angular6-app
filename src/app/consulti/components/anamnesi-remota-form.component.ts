@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AnamnesiRemota } from '../model/anamnesi-remota.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup } from '@angular/forms';
@@ -17,6 +17,7 @@ export class AnamnesiRemotaFormComponent implements OnInit {
   useModal: boolean = true;
   @Input() model: AnamnesiRemota;
   @Input() tipi: Tipo[];
+  @Output() modelSubmitted = new EventEmitter();
 
   constructor(public activeModal: NgbActiveModal) {
 
@@ -33,6 +34,7 @@ export class AnamnesiRemotaFormComponent implements OnInit {
     console.log(this.tipi);
     //this.model.data = this.momentSvc.toApiString(this.model.data);
     console.log(this.model);
-    this.activeModal.close(this.model);
+    //this.activeModal.close(this.model);
+    this.modelSubmitted.emit(this.model);
   }  
 }

@@ -81,7 +81,7 @@ export class PazientiService {
   update(entity: Paziente) {
     console.log(entity)
     const obs = entity.id > 0 ?
-      this.http.put(this.baseUrl + '/c/' + entity.id, entity)
+      this.http.put(this.baseUrl + '/' + entity.id, entity)
       : this.http.post(this.baseUrl, entity);
 
     return obs

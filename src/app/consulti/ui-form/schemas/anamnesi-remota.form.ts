@@ -18,6 +18,7 @@ export const ANAMNESI_REMOTA_FORM = (tipi: Tipo[], disabled = false) => ({
           options: tipi,
           valueProp: 'id',
           labelProp: 'descrizione',
+          required: true,
         }),
         DESCRIPTION(disabled),
       ]
