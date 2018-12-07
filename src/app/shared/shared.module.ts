@@ -8,13 +8,15 @@ import { WoaGridComponent } from './woa-grid/woa-grid.component';
 
 import { PazienteDetailsComponent } from '../pazienti/components/paziente-details.component';
 import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
+import { EntityFormBaseComponent } from './entity-form-base.component';
+import { ModalEditComponent } from './modal-edit-component.base';
 
 @NgModule({
   imports: [ 
     CommonModule, UiFormModule, NgxDatatableModule
      ],
   exports:[UiFormModule, CommonModule, NgxDatatableModule, WoaGridComponent, PazienteDetailsComponent, PazienteFormComponent],
-  declarations: [ WoaGridComponent, PazienteDetailsComponent, PazienteFormComponent ],
+  declarations: [ WoaGridComponent, PazienteDetailsComponent, PazienteFormComponent, EntityFormBaseComponent ],
   providers: [
     { provide: 'moment', useFactory: (): any => moment },
     MomentService
