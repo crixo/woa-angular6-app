@@ -1,15 +1,10 @@
 import { NgModule } from '@angular/core';
-
-
 import { SharedModule } from '../shared/shared.module';
-
 import { PazientiService } from './services/pazienti.service';
-
 import { PazientiRoutingModule } from './pazienti-routing.module';
-import { PazientiPage } from './pages/pazienti.page';
-import { PazienteFormPage } from './pages/paziente-form.page';
+import { PazientiContainer } from './containers/pazienti.container';
+import { PazienteFormContainer } from './containers/paziente-form.container';
 import { MatButtonModule } from '@angular/material';
-
 
 @NgModule({
   imports: [ 
@@ -21,6 +16,6 @@ import { MatButtonModule } from '@angular/material';
     ],
   exports: [],
   providers: [PazientiService],
-  declarations: [ PazienteFormPage, PazientiPage ]
+  declarations: [ PazienteFormContainer, PazientiContainer ]
 })
 export class PazientiModule { }

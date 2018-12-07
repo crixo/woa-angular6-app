@@ -19,8 +19,6 @@ import { AnamnesiRemoteComponent,
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material';
 import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
-import { PazienteFormPage } from '../pazienti/pages/paziente-form.page';
-
 
 @NgModule({
   imports: [ 
@@ -56,9 +54,5 @@ import { PazienteFormPage } from '../pazienti/pages/paziente-form.page';
     EntityAddComponent ]
 })
 export class ConsultiModule { 
-
-  constructor(){
-    console.log('ConsultiModule')
-  }
 
 }

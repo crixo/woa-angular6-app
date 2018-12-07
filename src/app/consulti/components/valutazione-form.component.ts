@@ -1,31 +1,19 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { Valutazione } from '../model';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+import { OnInit, Optional} from '@angular/core';
 import { VALUTAZIONE_FORM } from '../ui-form/schemas/valutazione.form';
+import { Esame } from '../model';
+import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
-@Component({
-  selector: 'ngbd-modal-content',
-  templateUrl: './item-form.html'
-})
-export class ValutazioneFormComponent implements OnInit {
-  public form = new FormGroup({});
-  public fields: FormlyFieldConfig[];
+export class ValutazioneFormComponent extends EntityFormBaseComponent<Esame> implements OnInit {
   formTitle: string = "Valutazione";
-  useModal: boolean = true;
-  @Input() model: Valutazione;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(@Optional()public activeModal: NgbActiveModal) {
+    super(activeModal);
+  }   
 
   ngOnInit() {
     this.fields= [
       ...VALUTAZIONE_FORM().template
     ]; 
   }
-
-  public submit() {
-    console.log(this.model);
-    this.activeModal.close(this.model);
-  }  
 }

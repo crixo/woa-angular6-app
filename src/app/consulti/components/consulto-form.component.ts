@@ -1,24 +1,19 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter, Optional } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
+import { Component, OnInit, Optional } from '@angular/core';
 import { CONSULTO_FORM } from '../ui-form/schemas/consulto.form';
 import { Consulto } from '../model/consulto.model';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
 
 @Component({
-  selector: 'consulto-form',
+  selector: 'consulto-form ',
   templateUrl: './item-form.html'
 })
-export class ConsultoFormComponent implements OnInit {
-  public form = new FormGroup({});
-  public fields: FormlyFieldConfig[];
+export class ConsultoFormComponent extends EntityFormBaseComponent<Consulto> implements OnInit {
   formTitle: string = "Consulto";
-  useModal: boolean;
-  @Input() model: Consulto;
-  @Output() entitySubmitted = new EventEmitter<Consulto>();
-  //activeModal?: NgbActiveModal;
-  constructor(@Optional()public activeModal: NgbActiveModal) {//
-    this.useModal = this.activeModal !== null;
+
+  constructor(@Optional()public activeModal: NgbActiveModal) {
+    super(activeModal);
+    console.log(this.activeModal);
   }
 
   ngOnInit() {
@@ -28,13 +23,4 @@ export class ConsultoFormComponent implements OnInit {
       ...CONSULTO_FORM(panel).template
     ]; 
   }
-
-  public submit() {
-    console.log(this.model);
-    console.log(this.activeModal);
-    if(this.activeModal)
-      this.activeModal.close(this.model);
-    else
-      this.entitySubmitted.emit(this.model);
-  }  
 }

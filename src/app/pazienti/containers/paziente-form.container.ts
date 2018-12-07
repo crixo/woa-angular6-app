@@ -13,7 +13,7 @@ import { AlertService } from 'src/app/messages/alert.service';
   </div> 
   `
 })
-export class PazienteFormPage implements OnInit, OnDestroy {
+export class PazienteFormContainer implements OnInit, OnDestroy {
   paziente: Paziente;
   province: any[];
   private subs: Subscription[] = new Array<Subscription>();

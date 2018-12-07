@@ -2,46 +2,25 @@ import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angu
 import { Esame, Tipo } from '../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EsameFormComponent } from './esame-form.component';
-
+import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
 
 @Component({
     selector: 'esami',
     templateUrl: './ngx-datatable.html'
   })
-export class EsamiComponent implements OnInit {
-  //@Input() list: Esame[];
+export class EsamiComponent extends ModalEditComponent<Esame> {
   @Input() list: Esame[];
   @Input() tipi: Tipo[];
-  @Output() entitySubmitted = new EventEmitter<Esame>();
   columns = [{name:'data'},{name:'descrizione'},{name:'tipo', prop:'tipo.descrizione'}];
-  //cols: any[];
   title: string = "Esami";
   editPath: string = "esami";
-  editAction="open";
-  gridButtonLabel: string = "edit";
 
-  constructor(private modalService: NgbModal) { }
-
-  ngOnInit() {
-
-      // this.cols = [
-      //     { field: 'data', header: 'data' },
-      //     { field: 'descrizione', header: 'descrizione' },
-      //     { field: 'tipo', subfield:'descrizione', header: 'tipo' },
-      // ];
+  constructor(modalService: NgbModal) { 
+    super(modalService);
   }
 
-  open(entity: Esame) {
-    console.log(this.tipi);
-    console.log(entity);
-    const model = {...entity};
-    const modalRef = this.modalService.open(EsameFormComponent);
-    modalRef.componentInstance.model = model;
-    modalRef.componentInstance.tipi = this.tipi;
-    modalRef.result.then((data) => {
-      this.entitySubmitted.emit(data);
-    }, (reason) => {
-      // on dismiss
-    });
-  }  
+  edit(entity: Esame){
+    super.edit_int(entity, EsameFormComponent);
+    this._modalRef.componentInstance.tipi = this.tipi;
+  }
 }

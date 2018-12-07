@@ -1,18 +1,24 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-sm">
-      <paziente-details [paziente]="paziente" (pazienteSubmitted)="onPazienteSubmitted($event)"></paziente-details>
+      <paziente-details [paziente]="paziente" [showDetailsLink]="true" (pazienteSubmitted)="onPazienteSubmitted($event)"></paziente-details>
     </div>
     <div class="col-sm">
-      <consulto-form [model]='consulto' (entitySubmitted)="onConsultoSubmitted($event)"></consulto-form>
+      <consulto-form [model]='consulto' (modelSubmitted)="onConsultoSubmitted($event)"></consulto-form>
     </div>
     <div class="col-sm">
-      <anamnesi-prossima-form [model]='consulto.anamnesiProssima' (entitySubmitted)="onAnamnesiProssimaSubmitted($event)"></anamnesi-prossima-form>
+      <anamnesi-prossima-form [model]='consulto.anamnesiProssima' (modelSubmitted)="onAnamnesiProssimaSubmitted($event)"></anamnesi-prossima-form>
     </div>
     <div class="col-sm">
-        <esami (entitySubmitted)="onEsameSubmitted($event)" [list]="consulto.esami" [tipi]="tipiEsami"></esami>
-        <trattamenti (entitySubmitted)="onTrattamentoSubmitted($event)" [list]="consulto.trattamenti"></trattamenti>
-        <valutazioni (entitySubmitted)="onValutazioneSubmitted($event)" [list]="consulto.valutazioni"></valutazioni>
+        <div style="margin-bottom: 15px">
+          <esami (entitySubmitted)="onEsameSubmitted($event)" [list]="consulto.esami" [tipi]="tipiEsami"></esami>
+        </div>
+        <div style="margin-bottom: 15px">
+          <trattamenti (entitySubmitted)="onTrattamentoSubmitted($event)" [list]="consulto.trattamenti"></trattamenti>
+        </div>
+        <div style="margin-bottom: 15px">
+          <valutazioni (entitySubmitted)="onValutazioneSubmitted($event)" [list]="consulto.valutazioni"></valutazioni>
+        </div>
     </div>
   </div>
 </div>

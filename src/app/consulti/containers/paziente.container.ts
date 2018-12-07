@@ -77,10 +77,10 @@ export class PazienteContainer implements OnInit, OnDestroy {
     const today = this.momentSvc.getToday();
     switch(entityName){
       case 'AnamnesiRemota':
-        this.anamnesiRemoteComponent.open( new AnamnesiRemota(today));
+        this.anamnesiRemoteComponent.edit( new AnamnesiRemota(today));
         break;
       case 'Consulto':
-        this.consultiComponent.open( new Consulto(today));
+        this.consultiComponent.edit( new Consulto(today));
         break;
       default:
         console.log(`no entity found w/ name ${entityName}`);
@@ -96,7 +96,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
         console.log(result);
         
         if(result){
-          this.pazienteDetailsComponent.pazientePersisted = true;
+          this.pazienteDetailsComponent.entityPersisted = true;
           this.paziente.update(paziente);
           this.alertService.success(`paziente ${result.cognome} salvato con successo`);
         }
@@ -109,7 +109,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
       entity,
       [...this.consulti], 
       (dto)=>this.consultiSvc.storeConsulto(dto), 
-      (newList) => this.consulti = newList, 
+      (newList) => {this.consulti = newList; this.consultiComponent.entityPersisted=true;}, 
       (dto)=>{return dto;});
   }
 

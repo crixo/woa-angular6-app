@@ -7,10 +7,10 @@ import { PagedData } from 'src/app/shared/paged-data';
 import { Subscription } from 'rxjs';
 
 @Component({
-  templateUrl: 'pazienti.page.html',
+  templateUrl: 'pazienti.container.html',
   //styles: [`@import '/node_modules/@swimlane/ngx-datatable/release/themes/material.css';`]
 })
-export class PazientiPage implements OnInit, OnDestroy {
+export class PazientiContainer implements OnInit, OnDestroy {
   page = new Page();
   rows: Paziente[];
   columns = [{name:'Nome'},{name:'Cognome'}];

@@ -1,33 +1,24 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { OnInit, Component, Optional } from '@angular/core';
 import { AnamnesiProssima } from '../model';
-import { FormGroup } from '@angular/forms';
-import { FormlyFieldConfig } from '@ngx-formly/core';
+
 import { ANAMNESI_PROSSIMA_FORM } from '../ui-form/schemas/anamnesi-prossima.form';
+import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'anamnesi-prossima-form',
+  selector: 'anamnesi-prossima-form ',
   templateUrl: './item-form.html'
 })
-export class AnamnesiProssimaFormComponent implements OnInit {
-  public form = new FormGroup({});
-  public fields: FormlyFieldConfig[];
+export class AnamnesiProssimaFormComponent extends EntityFormBaseComponent<AnamnesiProssima> implements OnInit {
   formTitle: string = "Anamnesi Prossima";
-  @Input() model: AnamnesiProssima;
-  @Output() entitySubmitted = new EventEmitter<AnamnesiProssima>();
-  useModal: boolean = false;
 
-  constructor() {
-  }
+  constructor(@Optional()public activeModal: NgbActiveModal) {
+    super(activeModal);
+  }  
 
   ngOnInit() {
     this.fields= [
       ...ANAMNESI_PROSSIMA_FORM().template
     ]; 
   }
-
-  public submit() {
-    //this.model.data = this.momentSvc.toApiString(this.model.data);
-    console.log(this.model);
-    this.entitySubmitted.emit(this.model);
-  }  
 }

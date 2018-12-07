@@ -1,32 +1,25 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Trattamento, Valutazione } from '../model';
+import { Component, Input } from '@angular/core';
+import { Trattamento } from '../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TrattamentoFormComponent } from './trattamento-form.component';
+import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
 
 @Component({
     selector: 'trattamenti',
     //templateUrl: './list.html'
     templateUrl: './ngx-datatable.html'
   })
-export class TrattamentiComponent{
+export class TrattamentiComponent extends ModalEditComponent<Trattamento>{ 
   @Input() list: Trattamento[];
-  @Output() entitySubmitted = new EventEmitter<Trattamento>();
   columns = [{name:'data'},{name:'descrizione'}];
   title: string = "Trattamenti";
-  gridButtonLabel: string = "edit";
-  editAction="open";
+  editPath: string = "trattamenti";
 
-  constructor(private modalService: NgbModal) { }
+  constructor(modalService: NgbModal) { 
+    super(modalService);
+  }
 
-  open(entity: Trattamento) {
-    console.log(entity);
-    const model = {...entity};
-    const modalRef = this.modalService.open(TrattamentoFormComponent);
-    modalRef.componentInstance.model = model;
-    modalRef.result.then((data) => {
-      this.entitySubmitted.emit(data);
-    }, (reason) => {
-      // on dismiss
-    });
-  }  
+  edit(entity: Trattamento){
+    super.edit_int(entity, TrattamentoFormComponent);
+  }
 }

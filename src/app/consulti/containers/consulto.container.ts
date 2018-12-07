@@ -77,13 +77,13 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     const today = this.momentSvc.getToday();
     switch(entityName){
       case 'Esame':
-        this.esamiComponent.open( new Esame(today));
+        this.esamiComponent.edit( new Esame(today));
         break;
       case 'Trattamento':
-        this.trattamentiComponent.open( new Trattamento(today));
+        this.trattamentiComponent.edit( new Trattamento(today));
         break;
       case 'Valutazione':
-        this.valutazioniComponent.open( new Valutazione());
+        this.valutazioniComponent.edit( new Valutazione());
         break;
       default:
         console.log(`no entity found w/ name ${entityName}`);
@@ -135,7 +135,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
       entity, 
       [...this.consulto.esami], 
       (dto)=>this.consultiSvc.storeEsame(dto), 
-      (newList) => this.consulto.esami = newList,
+      (newList) => { this.consulto.esami = newList; this.esamiComponent.entityPersisted=true;},
       (dto) => { dto.tipo = this.tipiEsami.find(x=>x.id==dto.tipoId); return dto;});
   }
 
@@ -144,7 +144,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
       entity, 
       [...this.consulto.trattamenti], 
       (dto)=>this.consultiSvc.storeTrattamento(dto), 
-      (newList) => this.consulto.trattamenti = newList,
+      (newList) => {this.consulto.trattamenti = newList; this.trattamentiComponent.entityPersisted=true;},
       (dto) => { return dto;});
   }
 
@@ -153,7 +153,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
       entity, 
       [...this.consulto.valutazioni], 
       (dto)=>this.consultiSvc.storeValutazione(dto), 
-      (newList) => this.consulto.valutazioni = newList,
+      (newList) => {this.consulto.valutazioni = newList; this.valutazioniComponent.entityPersisted=true;},
       (dto) => { return dto;});
   }  
 
