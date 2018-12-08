@@ -1,14 +1,14 @@
-import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
-import { Esame, Tipo } from '../model';
+import { Component, Input } from '@angular/core';
+import { Esame, Tipo } from '../../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EsameFormComponent } from './esame-form.component';
-import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
+import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { EsameFormModalComponent } from './esame-form-modal.component';
 
 @Component({
     selector: 'esami',
-    templateUrl: './ngx-datatable.html'
+    templateUrl: '../ngx-datatable.html'
   })
-export class EsamiComponent extends ModalEditComponent<Esame> {
+export class EsamiComponent extends ModalEditBaseComponent<Esame> {
   @Input() list: Esame[];
   @Input() tipi: Tipo[];
   columns = [{name:'data'},{name:'descrizione'},{name:'tipo', prop:'tipo.descrizione'}];
@@ -20,7 +20,7 @@ export class EsamiComponent extends ModalEditComponent<Esame> {
   }
 
   edit(entity: Esame){
-    super.edit_int(entity, EsameFormComponent);
+    super.edit_int(entity, EsameFormModalComponent);
     this._modalRef.componentInstance.tipi = this.tipi;
   }
 }

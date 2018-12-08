@@ -10,20 +10,8 @@ import { PazienteForm1Component } from './paziente-form1.component';
 </app-modal>`
 })
 export class PazienteForm1ModalComponent extends PazienteForm1Component {
-
-
-  // @Input() title:string;
-  // @Input() province: Provincia[];
-  // @Input() model: Paziente = <Paziente>{};
-  @Output() modelSubmitted = new EventEmitter<Paziente>();
-
-  // ngOnInit() {
-  //   this.title = "Modifica paziente"
-  // }
-
   onModelSubmitted(model: Paziente){
     console.log(this);
     this.modelSubmitted.emit(model);
   }
-
 }

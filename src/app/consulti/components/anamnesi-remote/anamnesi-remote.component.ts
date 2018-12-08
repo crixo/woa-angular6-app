@@ -1,15 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { AnamnesiRemota } from '../model/anamnesi-remota.model';
+import { AnamnesiRemota } from '../../model/anamnesi-remota.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AnamnesiRemotaFormComponent } from './anamnesi-remota-form.component';
-import { Tipo } from '../model/tipo.model';
-import { ModalEditComponent } from '../../shared/modal-edit-component.base';
+import { Tipo } from '../../model/tipo.model';
+import { ModalEditBaseComponent } from '../../../shared/modal-edit-base-component';
+import { AnamnesiRemotaFormModalComponent } from './anamnesi-remota-form-modal.component';
 
 @Component({
   selector: 'anamnesi-remote',
-  templateUrl: './ngx-datatable.html'
+  templateUrl: '../ngx-datatable.html'
 })
-export class AnamnesiRemoteComponent extends ModalEditComponent<AnamnesiRemota> {
+export class AnamnesiRemoteComponent extends ModalEditBaseComponent<AnamnesiRemota> {
   @Input() tipi: Tipo[];
   @Input() list: AnamnesiRemota[];
 
@@ -22,7 +23,7 @@ export class AnamnesiRemoteComponent extends ModalEditComponent<AnamnesiRemota> 
   }
 
   edit(entity: AnamnesiRemota) {
-    super.edit_int(entity, AnamnesiRemotaFormComponent);
+    super.edit_int(entity, AnamnesiRemotaFormModalComponent);
     this._modalRef.componentInstance.tipi = this.tipi;
   }    
 }

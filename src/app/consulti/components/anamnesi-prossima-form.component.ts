@@ -11,11 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AnamnesiProssimaFormComponent extends EntityFormBaseComponent<AnamnesiProssima> implements OnInit {
   formTitle: string = "Anamnesi Prossima";
-
-  constructor(@Optional()public activeModal: NgbActiveModal) {
-    super(activeModal);
-  }  
-
+  
   ngOnInit() {
     this.fields= [
       ...ANAMNESI_PROSSIMA_FORM().template

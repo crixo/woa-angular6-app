@@ -19,6 +19,11 @@ import { AnamnesiRemoteComponent,
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatButtonModule } from '@angular/material';
 import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
+import { ConsultoFormModalComponent } from './components/consulti/consulto-form-modal.component';
+import { AnamnesiRemotaFormModalComponent } from './components/anamnesi-remote/anamnesi-remota-form-modal.component';
+import { EsameFormModalComponent } from './components/esami/esame-form-modal.component';
+import { TrattamentoFormModalComponent } from './components/trattamenti/trattamento-form-modal.component';
+import { ValutazioneFormModalComponent } from './components/valutazioni/valutazione-form-modal.component';
 
 @NgModule({
   imports: [ 
@@ -45,12 +50,21 @@ import { PazienteFormComponent } from '../pazienti/components/paziente-form.comp
     ConsultiService, 
     PazientiService
   ],
-  entryComponents: [AnamnesiRemotaFormComponent, EsameFormComponent, TrattamentoFormComponent, ValutazioneFormComponent, ConsultoFormComponent, PazienteFormComponent],
+  entryComponents: [
+    AnamnesiRemotaFormComponent, AnamnesiRemotaFormModalComponent,
+    EsameFormComponent, EsameFormModalComponent,
+    TrattamentoFormComponent, TrattamentoFormModalComponent,
+    ValutazioneFormComponent, ValutazioneFormModalComponent,
+    ConsultoFormComponent, ConsultoFormModalComponent,
+    PazienteFormComponent],
   declarations: [ 
     ConsultoContainer, PazienteContainer, 
-    ConsultoFormComponent, ConsultiComponent, 
-    AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, 
-    AnamnesiProssimaFormComponent, EsameFormComponent, EsamiComponent, TrattamentiComponent, TrattamentoFormComponent, ValutazioniComponent, ValutazioneFormComponent,
+    ConsultoFormComponent, ConsultiComponent, ConsultoFormModalComponent,
+    AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, AnamnesiRemotaFormModalComponent,
+    AnamnesiProssimaFormComponent, 
+    EsameFormComponent, EsamiComponent, EsameFormModalComponent,
+    TrattamentiComponent, TrattamentoFormComponent, TrattamentoFormModalComponent,
+    ValutazioniComponent, ValutazioneFormComponent, ValutazioneFormModalComponent,
     EntityAddComponent ]
 })
 export class ConsultiModule { 

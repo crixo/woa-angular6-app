@@ -1,15 +1,14 @@
 import { Component, Input } from '@angular/core';
-import { Trattamento } from '../model';
+import { Trattamento } from '../../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { TrattamentoFormComponent } from './trattamento-form.component';
-import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
+import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { TrattamentoFormModalComponent } from './trattamento-form-modal.component';
 
 @Component({
     selector: 'trattamenti',
-    //templateUrl: './list.html'
-    templateUrl: './ngx-datatable.html'
+    templateUrl: '../ngx-datatable.html'
   })
-export class TrattamentiComponent extends ModalEditComponent<Trattamento>{ 
+export class TrattamentiComponent extends ModalEditBaseComponent<Trattamento>{ 
   @Input() list: Trattamento[];
   columns = [{name:'data'},{name:'descrizione'}];
   title: string = "Trattamenti";
@@ -20,6 +19,6 @@ export class TrattamentiComponent extends ModalEditComponent<Trattamento>{
   }
 
   edit(entity: Trattamento){
-    super.edit_int(entity, TrattamentoFormComponent);
+    super.edit_int(entity, TrattamentoFormModalComponent);
   }
 }

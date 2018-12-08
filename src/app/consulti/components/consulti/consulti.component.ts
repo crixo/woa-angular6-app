@@ -1,15 +1,15 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Consulto } from '../model/consulto.model';
+import { Consulto } from '../../model/consulto.model';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ConsultoFormComponent } from './consulto-form.component';
-import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
+import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { ConsultoFormModalComponent } from './consulto-form-modal.component';
 
 @Component({
     selector: 'consulti',
-    templateUrl: './ngx-datatable.html'
+    templateUrl: '../ngx-datatable.html'
   })
-export class ConsultiComponent extends ModalEditComponent<Consulto>{
+export class ConsultiComponent extends ModalEditBaseComponent<Consulto>{
   @Input() list: Consulto[];
   @Output() entitySubmitted = new EventEmitter<Consulto>();
 
@@ -29,6 +29,6 @@ export class ConsultiComponent extends ModalEditComponent<Consulto>{
   }  
 
   edit(entity: Consulto) {
-    super.edit_int(entity, ConsultoFormComponent);
+    super.edit_int(entity, ConsultoFormModalComponent);
   }  
 }
