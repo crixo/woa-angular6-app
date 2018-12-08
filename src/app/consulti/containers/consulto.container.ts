@@ -79,6 +79,8 @@ export class ConsultoContainer implements OnInit, OnDestroy {
             this.province = data;
           })
         );        
+
+        //TODO: subscribe to pazienteSubmitted
       })
     );
   }
@@ -108,6 +110,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
       this.pazientiService.update(pazienteDto).subscribe((result) => {
         if(result){
           this.pazienteDetailsComponent.entityPersisted = true;
+          //TODO: publish event
           this.paziente.update(paziente);
           this.alertService.success(`paziente ${result.cognome} salvato con successo`);
         }

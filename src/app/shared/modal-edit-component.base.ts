@@ -18,7 +18,7 @@ export class ModalEditComponent<T> implements OnDestroy {
   editAction = "edit";
   gridButtonLabel: string = "edit";
 
-  constructor(private modalService: NgbModal) { }
+  constructor(protected modalService: NgbModal) { }
 
   edit_int<T extends object>(entity: T, component: any, modalOptions:NgbModalOptions = { }) {
     const model = { ...(entity as object) } as T;

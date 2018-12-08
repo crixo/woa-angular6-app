@@ -20,7 +20,8 @@ export class PazienteContainer implements OnInit, OnDestroy {
     private route: ActivatedRoute, 
     private momentSvc: MomentService, 
     private pazientiService: PazientiService,
-    private alertService: AlertService) { }
+    private alertService: AlertService,
+    ) { }
 
   paziente: PazienteFull = <PazienteFull>{};
   consulti: Consulto[];

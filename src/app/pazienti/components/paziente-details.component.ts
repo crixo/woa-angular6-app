@@ -1,33 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Paziente, Provincia } from '../model/paziente.model';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { PazienteFormComponent } from './paziente-form.component';
-
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalEditComponent } from 'src/app/shared/modal-edit-component.base';
 import { Router } from '@angular/router';
+import { PazienteForm1ModalComponent } from './paziente-form1-modal.component';
+
 
 @Component({
   selector: 'paziente-details',
   templateUrl: './paziente-details.component.html'
 })
-export class PazienteDetailsComponent extends ModalEditComponent<Paziente>  {
+export class PazienteDetailsComponent extends ModalEditComponent<Paziente>{
   @Input() province: Provincia[];
   @Input() paziente: Paziente = <Paziente>{};
   @Input() showDetailsLink: Boolean = false;
 
-  constructor(modalService: NgbModal, private router: Router) {
+  constructor(private router: Router, modalService: NgbModal) { 
     super(modalService)
   }
 
   edit(entity: Paziente) {
-    //this._modalRef = this.modalService.open(PazienteFormComponent, { size: 'lg' });
-    
-    super.edit_int(entity, PazienteFormComponent, {size: 'lg'});
-
+    super.edit_int(entity, PazienteForm1ModalComponent, {size: 'lg'});
     this._modalRef.componentInstance.province = this.province;
   }
 
   goToPazienteDetails(entity: Paziente) {
     this.router.navigate([`/paziente/${entity.id}`]);
   }
+
+
 }
