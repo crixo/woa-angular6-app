@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AnamnesiRemoteComponent } from '../components/anamnesi-remote.component';
 import { ConsultiComponent } from '../components/consulti.component';
-import { Paziente } from 'src/app/pazienti/model/paziente.model';
+import { Paziente, Provincia } from 'src/app/pazienti/model/paziente.model';
 import { PazientiService } from 'src/app/pazienti/services/pazienti.service';
 import { AlertService } from 'src/app/messages/alert.service';
 import { PazienteDetailsComponent } from 'src/app/pazienti/components/paziente-details.component';
@@ -25,6 +25,7 @@ export class PazienteContainer implements OnInit, OnDestroy {
   paziente: PazienteFull = <PazienteFull>{};
   consulti: Consulto[];
   anamnesiRemote: AnamnesiRemota[];
+  province: Provincia[];
   tipiAnamnesiRemote: Tipo[];
   private subs: Subscription[] = new Array<Subscription>();
 
@@ -45,8 +46,6 @@ export class PazienteContainer implements OnInit, OnDestroy {
     this.subs.push(
       this.route.paramMap.subscribe(params => {
         const pazienteId = +params.get('pazienteId');
-        console.log(params);
-
         this.subs.push(
           this.consultiSvc.getPaziente(pazienteId).subscribe(data=>{
             if(data){
@@ -66,6 +65,12 @@ export class PazienteContainer implements OnInit, OnDestroy {
         this.subs.push(
           this.consultiSvc.getTipiAnamnesiRemota().subscribe(data=>{
             this.tipiAnamnesiRemote = data;
+          })
+        );
+
+        this.subs.push(
+          this.pazientiService.getProvince().subscribe(data=>{
+            this.province = data;
           })
         );
       })
@@ -90,11 +95,8 @@ export class PazienteContainer implements OnInit, OnDestroy {
   onPazienteSubmitted(paziente: Paziente){
     let pazienteDto = { ...paziente }
     pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
-    console.log(pazienteDto);
     this.subs.push(
       this.pazientiService.update(pazienteDto).subscribe((result) => {
-        console.log(result);
-        
         if(result){
           this.pazienteDetailsComponent.entityPersisted = true;
           this.paziente.update(paziente);
@@ -128,13 +130,11 @@ export class PazienteContainer implements OnInit, OnDestroy {
     dto.data = this.momentSvc.toApiString(dto.data);
     this.subs.push(
       apiCall(dto).subscribe((result) => {
-        console.log(result);
         if(result){
           result.data = this.momentSvc.toLocalString(result.data);
           let newList = currentList.filter(x=>x.id !== result.id);
           newList.push(toModel(result));
           newList.sort((a, b) => a.id - b.id);
-          console.log(newList);
           callback(newList);
           this.alertService.success(`modifica avvenuta con successo`);
         }

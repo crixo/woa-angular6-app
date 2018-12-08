@@ -6,8 +6,9 @@ import { AlertService } from 'src/app/messages/alert.service';
 import { PazienteFull, Consulto, Esame, EntityType, Tipo, AnamnesiProssima, Trattamento, Valutazione } from '../model';
 import { Subscription } from 'rxjs';
 import { EsamiComponent, TrattamentiComponent, ValutazioniComponent } from '../components';
-import { Paziente } from 'src/app/pazienti/model/paziente.model';
+import { Paziente, Provincia } from 'src/app/pazienti/model/paziente.model';
 import { PazientiService } from 'src/app/pazienti/services/pazienti.service';
+import { PazienteDetailsComponent } from 'src/app/pazienti/components/paziente-details.component';
 
 @Component({
   templateUrl: 'consulto.container.html'
@@ -23,12 +24,16 @@ export class ConsultoContainer implements OnInit, OnDestroy {
   paziente: PazienteFull = <PazienteFull>{};
   consulto: Consulto = <Consulto>{};
   tipiEsami: Tipo[];
+  province: Provincia[];
   private subs: Subscription[] = new Array<Subscription>();
 
   entitiesToAdd: EntityType[] = [ 
                   {icon: 'E', name:'Esame'}, 
                   {icon: 'T', name:'Trattamento'}, 
                   {icon: 'V', name:'Valutazione'}  ];
+                  
+  @ViewChild(PazienteDetailsComponent)
+  private pazienteDetailsComponent: PazienteDetailsComponent;
 
   @ViewChild(EsamiComponent)
   private esamiComponent: EsamiComponent;
@@ -68,6 +73,12 @@ export class ConsultoContainer implements OnInit, OnDestroy {
             this.tipiEsami = data;
           })
         );
+
+        this.subs.push(
+          this.pazientiService.getProvince().subscribe(data=>{
+            this.province = data;
+          })
+        );        
       })
     );
   }
@@ -93,11 +104,11 @@ export class ConsultoContainer implements OnInit, OnDestroy {
   onPazienteSubmitted(paziente: Paziente){
     let pazienteDto = { ...paziente }
     pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
-    console.log(pazienteDto);
     this.subs.push(
       this.pazientiService.update(pazienteDto).subscribe((result) => {
-        console.log(result);
         if(result){
+          this.pazienteDetailsComponent.entityPersisted = true;
+          this.paziente.update(paziente);
           this.alertService.success(`paziente ${result.cognome} salvato con successo`);
         }
       })
@@ -109,7 +120,6 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     dto.data = this.momentSvc.toApiString(dto.data);
     this.subs.push(
       this.consultiSvc.storeConsulto(dto).subscribe((result) => {
-        console.log(result);
         if(result) this.alertService.success(`modifica avvenuta con successo`);
         //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
       })
@@ -123,7 +133,6 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     if(this.consulto.anamnesiProssima) dto.id = this.consulto.id;
     this.subs.push(
       this.consultiSvc.storeAnamnesiProssima(dto).subscribe((result) => {
-        console.log(result);
         if(result) this.alertService.success(`modifica avvenuta con successo`);
         //this.onSaveComplete(`paziente ${result.cognome} salvato con successo`);
       })

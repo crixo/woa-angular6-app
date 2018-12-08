@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Paziente } from "../model/paziente.model";
+import { Paziente, Provincia } from "../model/paziente.model";
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap, delay } from 'rxjs/operators';
 import { PagedData } from '../../shared/paged-data';
@@ -32,10 +32,10 @@ export class PazientiService {
     return obs;
   }
 
-  getProvince(): Observable<any[]> {
-    return of([
-      { 'sigla': 'TO', 'descrizione': 'Torino' },
-    ]);
+  getProvince(): Observable<Provincia[]> {
+    const uri = this.env.apiBaseUrl + '/api/lookups/province';
+    console.log(uri);
+    return this.http.get<Provincia[]>(uri);
   }
 
   /**

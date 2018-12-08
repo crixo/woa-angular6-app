@@ -21,14 +21,11 @@ export class ModalEditComponent<T> implements OnDestroy {
   constructor(private modalService: NgbModal) { }
 
   edit_int<T extends object>(entity: T, component: any, modalOptions:NgbModalOptions = { }) {
-    console.log(entity);
     const model = { ...(entity as object) } as T;
     this._modalRef = this.modalService.open(component, modalOptions);
     this._modalRef.componentInstance.model = model;
-    this._modalRef.componentInstance.tipi = null;//this.tipi;
     this._sub = this._modalRef.componentInstance.modelSubmitted.subscribe(($e) => {
       const data = $e;
-      console.log(data);
       this.entitySubmitted.emit(data);
     })
   }

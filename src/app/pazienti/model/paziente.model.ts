@@ -12,3 +12,8 @@ export class Paziente {
   prov: string;
   telefono: string;
 }
+
+export interface Provincia{
+  sigla: string;
+  descrizione: string;
+}

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Paziente } from '../model/paziente.model';
+import { Paziente, Provincia } from '../model/paziente.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PazienteFormComponent } from './paziente-form.component';
 
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './paziente-details.component.html'
 })
 export class PazienteDetailsComponent extends ModalEditComponent<Paziente>  {
-
+  @Input() province: Provincia[];
   @Input() paziente: Paziente = <Paziente>{};
   @Input() showDetailsLink: Boolean = false;
 
@@ -23,6 +23,8 @@ export class PazienteDetailsComponent extends ModalEditComponent<Paziente>  {
     //this._modalRef = this.modalService.open(PazienteFormComponent, { size: 'lg' });
     
     super.edit_int(entity, PazienteFormComponent, {size: 'lg'});
+
+    this._modalRef.componentInstance.province = this.province;
   }
 
   goToPazienteDetails(entity: Paziente) {
