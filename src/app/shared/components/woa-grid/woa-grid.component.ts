@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges, OnChanges } from '@angular/core';
-import { Page } from '../page';
+import { Page } from '../../model/page';
 import { Router } from '@angular/router';
 
 @Component({

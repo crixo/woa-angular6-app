@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
 import { Paziente, Provincia } from '../model/paziente.model';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { ModalEditBaseComponent } from 'src/app/shared/components/modal-edit-base-component';
 import { Router } from '@angular/router';
 import { PazienteForm1ModalComponent } from './paziente-form1-modal.component';
 

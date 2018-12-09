@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { ConsultiService } from '../consulti.service';
 import { ActivatedRoute } from '@angular/router';
-import { MomentService } from 'src/app/shared/moment.service';
+import { MomentService } from 'src/app/shared/services/moment.service';
 import { AlertService } from 'src/app/messages/alert.service';
 import { PazienteFull, Consulto, Esame, EntityType, Tipo, AnamnesiProssima, Trattamento, Valutazione } from '../model';
 import { Subscription } from 'rxjs';

@@ -1,7 +1,7 @@
 import { OnInit, Component} from '@angular/core';
 import { Trattamento } from '../../model';
 import { TRATTAMENTO_FORM } from '../../ui-form/schemas/trattamento.form';
-import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { EntityFormBaseComponent } from 'src/app/shared/components/entity-form-base.component';
 
 @Component({
   selector: 'trattamento-form',

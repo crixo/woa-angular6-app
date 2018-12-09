@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   template: `
 <h4 style="display: inline">
   <button style="border: 0" (click)="goToPazienteDetails(paziente)">
-    <i class="fas fa-arrow-left fa-xs"></i>
+    <i class="fas fa-chevron-circle-left fa-xs"></i>
   </button>
   <span>{{paziente.nome}} {{paziente.cognome}}</span>
   <span class="paziente-info">{{paziente.dataDiNascita}}</span>

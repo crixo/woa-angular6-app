@@ -1,6 +1,6 @@
 import { Injectable, ComponentFactoryResolver, Injector, Inject, TemplateRef, Type } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { ModalComponent } from './modal.component';
+import { ModalComponent } from '../components/modal.component';
 
 export type Content<T> = string | TemplateRef<T> | Type<T>;
 

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Paziente, Provincia } from '../model/paziente.model';
 import { PazientiService } from '../services/pazienti.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MomentService } from 'src/app/shared/moment.service';
+import { MomentService } from 'src/app/shared/services/moment.service';
 import { Subscription } from 'rxjs';
 import { AlertService } from 'src/app/messages/alert.service';
 

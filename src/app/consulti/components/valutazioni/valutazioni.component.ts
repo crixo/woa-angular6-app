@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Valutazione } from '../../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { ModalEditBaseComponent } from 'src/app/shared/components/modal-edit-base-component';
 import { ValutazioneFormModalComponent } from './valutazione-form-modal.component';
 
 @Component({

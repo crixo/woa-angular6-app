@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Trattamento } from '../../model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { ModalEditBaseComponent } from 'src/app/shared/components/modal-edit-base-component';
 import { TrattamentoFormModalComponent } from './trattamento-form-modal.component';
 
 @Component({

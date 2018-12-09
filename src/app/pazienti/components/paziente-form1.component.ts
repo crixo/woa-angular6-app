@@ -5,7 +5,7 @@ import { PazientiService } from '../services/pazienti.service';
 import { PAZIENTE_FORM } from '../ui-form/schemas/paziente.form';
 
 import { Paziente, Provincia } from '../model/paziente.model';
-import { MomentService } from '../../shared/moment.service';
+import { MomentService } from '../../shared/services/moment.service';
 import { Observable, of, Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { AnonymousSubject } from 'rxjs/internal/Subject';

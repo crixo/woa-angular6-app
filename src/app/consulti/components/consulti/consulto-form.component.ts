@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CONSULTO_FORM } from '../../ui-form/schemas/consulto.form';
 import { Consulto } from '../../model/consulto.model';
-import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { EntityFormBaseComponent } from 'src/app/shared/components/entity-form-base.component';
 
 @Component({
   selector: 'consulto-form',

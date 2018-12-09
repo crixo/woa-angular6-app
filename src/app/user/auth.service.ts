@@ -6,7 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { EnvService } from '../services/env.service';
 import { LocalStorageService } from '../services/local-storage.service';
-import { MomentService } from '../shared/moment.service';
+import { MomentService } from '../shared/services/moment.service';
 import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
 
 const USER_STORAGE_KEY: string = "USER_STORAGE_KEY";

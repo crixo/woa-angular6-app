@@ -1,7 +1,7 @@
 import { EventEmitter, Output, OnDestroy, Input } from "@angular/core";
 import { NgbModal, NgbModalRef, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { Subscription } from "rxjs";
-import { IEntity } from "../consulti/model";
+import { IEntity } from "../../consulti/model";
 
 export class ModalEditBaseComponent<T> implements OnDestroy {
   _entityPersisted: Boolean;
@@ -17,6 +17,7 @@ export class ModalEditBaseComponent<T> implements OnDestroy {
   }
 
   editAction = "edit";
+  editCssClass = "fa-edit";
   gridButtonLabel: string = "edit";
 
   constructor(protected modalService: NgbModal) { }

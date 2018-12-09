@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter, Input } from '@angular/core';
-import { addButtonAnimations } from '../../services/add-button.animations';
-import { EntityType } from '../model';
+import { addButtonAnimations } from './add-button.animations';
+import { EntityType } from '../../model';
 
 @Component({
   selector: 'entity-add',
@@ -10,8 +10,7 @@ import { EntityType } from '../model';
     (click)="onToggleFab()">
 </div>
 <div class="fab-container">
-  <button mat-fab class="fab-toggler"
-          (click)="onToggleFab()">
+  <button mat-fab class="fab-toggler" (click)="onToggleFab()">
     <i class="fas fa-plus" [@fabToggler]="{value: fabTogglerState}"></i> <!-- Animation here -->
   </button>
   <div [@speedDialStagger]="buttons.length"> <!-- and here -->

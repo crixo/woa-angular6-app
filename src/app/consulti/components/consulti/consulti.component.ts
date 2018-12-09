@@ -2,7 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Consulto } from '../../model/consulto.model';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalEditBaseComponent } from 'src/app/shared/modal-edit-base-component';
+import { ModalEditBaseComponent } from 'src/app/shared/components/modal-edit-base-component';
 import { ConsultoFormModalComponent } from './consulto-form-modal.component';
 
 @Component({
@@ -18,6 +18,7 @@ export class ConsultiComponent extends ModalEditBaseComponent<Consulto>{
   editPath: string = "consulti";
   gridButtonLabel: string = "details";
   editAction="details";
+  editCssClass="fa-chevron-circle-right";
 
   constructor(private router: Router, modalService: NgbModal) { 
     super(modalService)

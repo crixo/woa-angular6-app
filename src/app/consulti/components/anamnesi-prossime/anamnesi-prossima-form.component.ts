@@ -1,7 +1,7 @@
 import { OnInit, Component } from '@angular/core';
 import { AnamnesiProssima } from '../../model';
 import { ANAMNESI_PROSSIMA_FORM } from '../../ui-form/schemas/anamnesi-prossima.form';
-import { EntityFormBaseComponent } from '../../../shared/entity-form-base.component';
+import { EntityFormBaseComponent } from '../../../shared/components/entity-form-base.component';
 
 @Component({
   selector: 'anamnesi-prossima-form ',

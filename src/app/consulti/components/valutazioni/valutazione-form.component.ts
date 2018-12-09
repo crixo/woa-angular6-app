@@ -1,7 +1,7 @@
 import { OnInit, Component} from '@angular/core';
 import { VALUTAZIONE_FORM } from '../../ui-form/schemas/valutazione.form';
 import { Valutazione } from '../../model';
-import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { EntityFormBaseComponent } from 'src/app/shared/components/entity-form-base.component';
 
 @Component({
   selector: 'valutazione-form',

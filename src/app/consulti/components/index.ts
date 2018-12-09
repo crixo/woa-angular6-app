@@ -2,7 +2,7 @@ export * from './anamnesi-remote/anamnesi-remota-form.component';
 export * from './anamnesi-remote/anamnesi-remote.component';
 export * from './consulti/consulti.component';
 export * from './consulti/consulto-form.component';
-export * from './entity-add.component';
+export * from './_entity-add/entity-add.component';
 export * from './anamnesi-prossime/anamnesi-prossima-form.component';
 export * from './esami/esami.component';
 export * from './esami/esame-form.component';

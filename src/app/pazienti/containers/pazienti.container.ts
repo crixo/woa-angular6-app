@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Paziente } from '../model/paziente.model';
 import { PazientiService } from '../services/pazienti.service';
-import { Page } from '../../shared/page';
+import { Page } from '../../shared/model/page';
 import { Router } from '@angular/router';
-import { PagedData } from 'src/app/shared/paged-data';
+import { PagedData } from 'src/app/shared/model/paged-data';
 import { Subscription } from 'rxjs';
 
 @Component({

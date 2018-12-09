@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Paziente, Provincia } from "../model/paziente.model";
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap, delay } from 'rxjs/operators';
-import { PagedData } from '../../shared/paged-data';
-import { Page } from '../../shared/page';
+import { PagedData } from '../../shared/model/paged-data';
+import { Page } from '../../shared/model/page';
 import { EnvService } from 'src/app/services/env.service';
 import { HttpErrorHandler, HandleError } from 'src/app/services/http-error-handler.service';
 

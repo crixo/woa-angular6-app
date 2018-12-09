@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Optional } from '@angular/core';
 import { Esame, Tipo } from '../../model';
 import { ESAME_FORM } from '../../ui-form/schemas/esame.form';
-import { EntityFormBaseComponent } from 'src/app/shared/entity-form-base.component';
+import { EntityFormBaseComponent } from 'src/app/shared/components/entity-form-base.component';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

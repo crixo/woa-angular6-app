@@ -3,7 +3,7 @@ import { AnamnesiRemota } from '../../model/anamnesi-remota.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AnamnesiRemotaFormComponent } from './anamnesi-remota-form.component';
 import { Tipo } from '../../model/tipo.model';
-import { ModalEditBaseComponent } from '../../../shared/modal-edit-base-component';
+import { ModalEditBaseComponent } from '../../../shared/components/modal-edit-base-component';
 import { AnamnesiRemotaFormModalComponent } from './anamnesi-remota-form-modal.component';
 
 @Component({
