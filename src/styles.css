@@ -156,5 +156,10 @@ button:focus {
   border: 0;
 } */
 
+span.paziente-info{
+  padding: 0 5px;
+  font-size: medium;
+}
+
 
 

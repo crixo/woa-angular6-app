@@ -22,6 +22,7 @@ export class ConsultoContainer implements OnInit, OnDestroy {
     private alertService: AlertService) { }
 
   paziente: PazienteFull = <PazienteFull>{};
+  consulti: Consulto[] = new Array<Consulto>();
   consulto: Consulto = <Consulto>{};
   tipiEsami: Tipo[];
   province: Provincia[];
@@ -31,9 +32,6 @@ export class ConsultoContainer implements OnInit, OnDestroy {
                   {icon: 'E', name:'Esame'}, 
                   {icon: 'T', name:'Trattamento'}, 
                   {icon: 'V', name:'Valutazione'}  ];
-                  
-  @ViewChild(PazienteDetailsComponent)
-  private pazienteDetailsComponent: PazienteDetailsComponent;
 
   @ViewChild(EsamiComponent)
   private esamiComponent: EsamiComponent;
@@ -57,8 +55,14 @@ export class ConsultoContainer implements OnInit, OnDestroy {
             if(data){
               this.paziente = data;
               this.paziente.dataDiNascita = this.momentSvc.toLocalString(this.paziente.dataDiNascita);
+
+              let consulti = data.consulti;
+              //console.log(consulti)
+              consulti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
+              this.consulti = consulti;
+
               let consulto = data.consulti.find(x=>x.id === consultoId);
-              consulto.data = this.momentSvc.toLocalString(consulto.data);
+              //consulto.data = this.momentSvc.toLocalString(consulto.data);
               
               consulto.esami.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
               consulto.trattamenti.forEach(x=>x.data = this.momentSvc.toLocalString(x.data));
@@ -73,14 +77,6 @@ export class ConsultoContainer implements OnInit, OnDestroy {
             this.tipiEsami = data;
           })
         );
-
-        this.subs.push(
-          this.pazientiService.getProvince().subscribe(data=>{
-            this.province = data;
-          })
-        );        
-
-        //TODO: subscribe to pazienteSubmitted
       })
     );
   }
@@ -102,21 +98,6 @@ export class ConsultoContainer implements OnInit, OnDestroy {
         console.log(`no entity found w/ name ${entityName}`);
     }
   }
-
-  onPazienteSubmitted(paziente: Paziente){
-    let pazienteDto = { ...paziente }
-    pazienteDto.dataDiNascita = this.momentSvc.toApiString(paziente.dataDiNascita);
-    this.subs.push(
-      this.pazientiService.update(pazienteDto).subscribe((result) => {
-        if(result){
-          this.pazienteDetailsComponent.entityPersisted = true;
-          //TODO: publish event
-          this.paziente.update(paziente);
-          this.alertService.success(`paziente ${result.cognome} salvato con successo`);
-        }
-      })
-    );
-  }    
 
   onConsultoSubmitted(entity: Consulto){
     let dto = {...entity};

@@ -1,8 +1,13 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-sm">
-      <paziente-details [paziente]="paziente" [province]="province" [showDetailsLink]="true" (entitySubmitted)="onPazienteSubmitted($event)"></paziente-details>
-    </div>
+      <div class="col-s">
+          <paziente-info [paziente]="paziente"></paziente-info>
+      </div>
+      <div class="col-sm">
+          <consulti-compact [list]="consulti" [selected]="consulto"></consulti-compact>
+      </div>
+  </div>
+  <div class="row">
     <div class="col-sm">
       <consulto-form [model]='consulto' (modelSubmitted)="onConsultoSubmitted($event)"></consulto-form>
     </div>

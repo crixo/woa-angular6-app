@@ -8,23 +8,24 @@ import { WoaGridComponent } from './woa-grid/woa-grid.component';
 import { PazienteDetailsComponent } from '../pazienti/components/paziente-details.component';
 import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
 import { ModalComponent } from './modal.component';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 import { PazienteForm1Component } from '../pazienti/components/paziente-form1.component';
 import { PazienteForm1ModalComponent } from '../pazienti/components/paziente-form1-modal.component';
+import { PazienteInfoComponent } from '../pazienti/components/paziente-info.component';
 
 @NgModule({
   imports: [ 
-    CommonModule, UiFormModule, NgxDatatableModule
+    CommonModule, UiFormModule, NgxDatatableModule, NgbPopoverModule
      ],
   exports:[ 
     UiFormModule, CommonModule, NgxDatatableModule, 
     WoaGridComponent, 
-    PazienteDetailsComponent, 
+    PazienteDetailsComponent, PazienteInfoComponent,
     PazienteFormComponent, PazienteForm1Component, PazienteForm1ModalComponent,
     ModalComponent
   ],
   declarations: [ WoaGridComponent, 
-    PazienteDetailsComponent, 
+    PazienteDetailsComponent, PazienteInfoComponent,
     PazienteFormComponent, PazienteForm1Component, PazienteForm1ModalComponent,
     ModalComponent ],
   entryComponents: [ ModalComponent, PazienteForm1ModalComponent],

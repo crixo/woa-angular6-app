@@ -24,6 +24,7 @@ import { AnamnesiRemotaFormModalComponent } from './components/anamnesi-remote/a
 import { EsameFormModalComponent } from './components/esami/esame-form-modal.component';
 import { TrattamentoFormModalComponent } from './components/trattamenti/trattamento-form-modal.component';
 import { ValutazioneFormModalComponent } from './components/valutazioni/valutazione-form-modal.component';
+import { ConsultiCompactComponent } from './components/consulti/consulti-compact.component';
 
 @NgModule({
   imports: [ 
@@ -59,7 +60,7 @@ import { ValutazioneFormModalComponent } from './components/valutazioni/valutazi
     PazienteFormComponent],
   declarations: [ 
     ConsultoContainer, PazienteContainer, 
-    ConsultoFormComponent, ConsultiComponent, ConsultoFormModalComponent,
+    ConsultiCompactComponent, ConsultoFormComponent, ConsultiComponent, ConsultoFormModalComponent,
     AnamnesiRemoteComponent, AnamnesiRemotaFormComponent, AnamnesiRemotaFormModalComponent,
     AnamnesiProssimaFormComponent, 
     EsameFormComponent, EsamiComponent, EsameFormModalComponent,

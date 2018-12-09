@@ -1,7 +1,4 @@
 <h4>
-  <button [hidden]="!showDetailsLink" style="border: 0" (click)="goToPazienteDetails(paziente)">
-    <i class="fas fa-arrow-left fa-xs"></i>
-  </button>
   <span>{{paziente.nome}} {{paziente.cognome}}</span>
   <button style="border: 0" (click)="edit(paziente)">
     <i class="fas fa-edit fa-xs"></i>
@@ -12,6 +9,9 @@
   <li class="list-group-item d-flex justify-content-between align-items-center">
     <i class="fas fa-birthday-cake"></i> {{paziente.dataDiNascita}}
   </li>
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <i class="fas fa-industry"></i> {{paziente.professione}}
+  </li>  
   <li class="list-group-item d-flex justify-content-between align-items-center">
     <i class="fas fa-home"></i> {{paziente.indirizzo}}, {{paziente.cap}} - {{paziente.citta}} ({{paziente.prov}})
   </li>
