@@ -1,4 +1,4 @@
-import { DESCRIPTION } from './form-elements/description';
+import { DESCRIPTION } from '../../../ui-form/schemas/form-elements/description';
 import { DATE } from '../../../ui-form/schemas/form-elements/date';
 
 export const CONSULTO_FORM = (panel:string, disabled = false) => ({

@@ -1,4 +1,4 @@
-import { TEXT } from '../ui-form/helpers/text';
+import { TEXT } from '../ui-form/schemas/form-elements';
 import { Field } from '../ui-form/helpers/fields';
 
 export const LOGIN_FORM = (disabled = false) => ({

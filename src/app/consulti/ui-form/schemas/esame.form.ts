@@ -1,4 +1,4 @@
-import { DESCRIPTION } from './form-elements/description';
+import { DESCRIPTION } from '../../../ui-form/schemas/form-elements/description';
 import { DATE } from '../../../ui-form/schemas/form-elements/date';
 import { Field } from '../../../ui-form/helpers/fields';
 import { Tipo } from '../../model/tipo.model';

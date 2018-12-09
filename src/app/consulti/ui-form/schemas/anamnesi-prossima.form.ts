@@ -1,4 +1,4 @@
-import { DESCRIPTION, TEXT } from './form-elements';
+import { DESCRIPTION, TEXT } from "src/app/ui-form/schemas/form-elements";
 
 export const ANAMNESI_PROSSIMA_FORM = (disabled = false) => ({
   id: 'ANAMNESI-REMOTA',

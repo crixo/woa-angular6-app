@@ -1,5 +1,4 @@
-
-import { TEXT } from './form-elements';
+import { TEXT } from "src/app/ui-form/schemas/form-elements";
 
 export const VALUTAZIONE_FORM = (disabled = false) => ({
   id: 'VALUTAZIONE_FORM',

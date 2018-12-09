@@ -1,4 +1,4 @@
-import { Field } from '../../../../ui-form/helpers/fields';
+import { Field } from '../../helpers/fields';
 
 export const DESCRIPTION = (
               disabled=false, 
