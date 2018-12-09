@@ -6,11 +6,10 @@ import { MomentService } from './services/moment.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { WoaGridComponent } from './components/woa-grid/woa-grid.component';
 import { PazienteDetailsComponent } from '../pazienti/components/paziente-details.component';
-import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
 import { ModalComponent } from './components/modal.component';
 import { NgbActiveModal, NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
-import { PazienteForm1Component } from '../pazienti/components/paziente-form1.component';
-import { PazienteForm1ModalComponent } from '../pazienti/components/paziente-form1-modal.component';
+import { PazienteFormComponent } from '../pazienti/components/paziente-form.component';
+import { PazienteFormModalComponent } from '../pazienti/components/paziente-form-modal.component';
 import { PazienteInfoComponent } from '../pazienti/components/paziente-info.component';
 
 @NgModule({
@@ -21,14 +20,14 @@ import { PazienteInfoComponent } from '../pazienti/components/paziente-info.comp
     UiFormModule, CommonModule, NgxDatatableModule, 
     WoaGridComponent, 
     PazienteDetailsComponent, PazienteInfoComponent,
-    PazienteFormComponent, PazienteForm1Component, PazienteForm1ModalComponent,
+    PazienteFormComponent, PazienteFormModalComponent,
     ModalComponent
   ],
   declarations: [ WoaGridComponent, 
     PazienteDetailsComponent, PazienteInfoComponent,
-    PazienteFormComponent, PazienteForm1Component, PazienteForm1ModalComponent,
+    PazienteFormComponent, PazienteFormModalComponent,
     ModalComponent ],
-  entryComponents: [ ModalComponent, PazienteForm1ModalComponent],
+  entryComponents: [ ModalComponent, PazienteFormModalComponent],
   providers: [
     { provide: 'moment', useFactory: (): any => moment },
     MomentService,
