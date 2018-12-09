@@ -3,7 +3,7 @@ export class Credentials  {
   password: string;
 }
 
-export class AuthResult  {
+export interface IUser  {
   id: number;
   userName: string;
   status: boolean;

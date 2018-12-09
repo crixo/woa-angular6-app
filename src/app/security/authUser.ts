@@ -1,6 +1,7 @@
 /* Defines the user entity */
-export interface IUser {
+export interface IAuthUser {
   id: number;
   userName: string;
   isAdmin: boolean;
 }
+

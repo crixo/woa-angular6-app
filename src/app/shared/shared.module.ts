@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UiFormModule } from '../ui-form/ui-form.module';
-import * as moment from 'moment';
-import { MomentService } from './services/moment.service';
+import { MomentService } from '../services/moment.service';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { WoaGridComponent } from './components/woa-grid/woa-grid.component';
 import { PazienteDetailsComponent } from '../pazienti/components/paziente-details.component';
@@ -29,8 +28,6 @@ import { PazienteInfoComponent } from '../pazienti/components/paziente-info.comp
     ModalComponent ],
   entryComponents: [ ModalComponent, PazienteFormModalComponent],
   providers: [
-    { provide: 'moment', useFactory: (): any => moment },
-    MomentService,
     NgbActiveModal
   ],
   bootstrap:    [  ]

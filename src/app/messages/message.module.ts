@@ -1,34 +1,20 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-
-import { SharedModule } from '../shared/shared.module';
-
-import { MessageComponent } from './message.component';
-import { MessageService } from './message.service';
 import { AlertService } from './alert.service';
-
 import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { AlertComponent } from './alert.component';
 import { ENumAsStringPipe } from './enum-to-string.pipe';
 
 @NgModule({
     imports: [
-        SharedModule,
+        CommonModule,
         NgbAlertModule,
-        RouterModule.forChild([
-            {
-                path: 'messages',
-                component: MessageComponent,
-                outlet: 'popup'
-            }
-        ])
     ],
     exports: [AlertComponent],
     declarations: [
-        MessageComponent, AlertComponent, ENumAsStringPipe
+        AlertComponent, ENumAsStringPipe
     ],
     providers: [
-        MessageService,
         AlertService
     ]
 })

@@ -2,25 +2,26 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { LoginComponent } from './login.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
-
+import { UserService } from './user.service';
+import { SecurityModule } from '../security/security.module';
 import { SharedModule } from '../shared/shared.module';
 import { LoginContainer } from './login.container';
+import { LogoutContainer } from './logout.container';
 
 @NgModule({
   imports: [
     SharedModule,
+    SecurityModule,
     RouterModule.forChild([
-      { path: 'login', component: LoginContainer }
+      { path: 'login', component: LoginContainer },
+      { path: 'logout', component: LogoutContainer }
     ])
   ],
   declarations: [
-    LoginComponent, LoginContainer
+    LoginComponent, LoginContainer, LogoutContainer
   ],
   providers: [
-    AuthService,
-    AuthGuard
+    UserService
   ]
 })
 export class UserModule { }

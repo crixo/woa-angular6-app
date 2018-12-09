@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { Credentials } from './user.model';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../messages/alert.service';
+import { UserService } from './user.service';
+import { AuthService } from '../security/auth.service';
 
 @Component({
   template: `
@@ -13,24 +13,30 @@ import { AlertService } from '../messages/alert.service';
   </div>
   `
 })
-
 export class LoginContainer implements OnInit, OnDestroy {
   private subs: Subscription[] = new Array<Subscription>();
 
-  constructor(private authService: AuthService,
-              private router: Router, private alertService: AlertService) { }
+  constructor(private userService: UserService,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() { }
 
-  onLogin(credentials: Credentials){
+  onLogin(credentials: Credentials) {
 
     this.subs.push(
-      this.authService.login(credentials).subscribe((result) => {
+      this.userService.login(credentials).subscribe((result) => {
         console.log(result);
-        if(result)
-          this.router.navigate(['/pazienti']);
+        if (result) {
+          this.authService.setCurrentUser(result.id, result.userName);
+          let redirectTo = this.authService.redirectUrl;
+          if (redirectTo === undefined) {
+            redirectTo = "pazienti";
+          }
+          this.router.navigate([redirectTo]);
+        }
       })
-    );   
+    );
   }
 
   ngOnDestroy(): void {

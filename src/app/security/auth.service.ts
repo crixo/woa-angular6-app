@@ -1,32 +1,24 @@
 import { Injectable } from '@angular/core';
-import { IUser } from './user';
-import { AuthResult, Credentials } from './user.model';
-import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { EnvService } from '../services/env.service';
+import { IAuthUser } from './authUser';
 import { LocalStorageService } from '../services/local-storage.service';
-import { MomentService } from '../shared/services/moment.service';
-import { HttpErrorHandler, HandleError } from '../services/http-error-handler.service';
+import { MomentService } from '../services/moment.service';
 
 const USER_STORAGE_KEY: string = "USER_STORAGE_KEY";
 const USER_STORAGE_EXPIRE_KEY: string = "USER_STORAGE_EXPIRE_KEY";
 
+// @Injectable({
+//     providedIn: 'root',
+//   })
 @Injectable()
 export class AuthService {
-    currentUser: IUser;
+    currentUser: IAuthUser;
     redirectUrl: string;
     baseUrl: string;
-    private handleError: HandleError;
 
-    constructor(private http: HttpClient, 
-        private env: EnvService, 
+    constructor(
         private localeStorageSvc: LocalStorageService, 
-        private momentSvc: MomentService,
-        httpErrorHandler: HttpErrorHandler
+        private momentSvc: MomentService
         ) {
-        this.baseUrl = this.env.apiBaseUrl + '/api';
-        this.handleError = httpErrorHandler.createHandleError('AuthService');
         const expirationDate = this.localeStorageSvc.get(USER_STORAGE_EXPIRE_KEY);
         console.log(`user auth expiration date: ${expirationDate}`);
         if(expirationDate && this.momentSvc.isUserAuthExpired(expirationDate)){
@@ -34,30 +26,20 @@ export class AuthService {
             this.logout();
         }
         this.currentUser =  this.localeStorageSvc.get(USER_STORAGE_KEY);
-      }
+    }
 
     isLoggedIn(): boolean {
         return !!this.currentUser;
     }
 
-    login(credentials: Credentials): Observable<AuthResult> {
-        return this.http.post(`${this.baseUrl}/users/authenticate`, credentials)      
-        .pipe(
-            tap((res: AuthResult) => { 
-                console.log(`authentication succeeded for ${credentials.userName}`);  
-                this.setCurrentUser(res.id, res.userName);
-            }),
-            catchError(this.handleError('login', null))
-        );
-    }
-
     logout(): void {
+        console.log(`logging out current user: ${this.currentUser}`);
         this.currentUser = null;
         this.localeStorageSvc.remove(USER_STORAGE_KEY);
         this.localeStorageSvc.remove(USER_STORAGE_EXPIRE_KEY);
     }
 
-    private setCurrentUser(id: number, userName: string){
+    setCurrentUser(id: number, userName: string){
         const user = {
             id: id,
             userName: userName,
@@ -66,5 +48,6 @@ export class AuthService {
         this.currentUser = user;      
         this.localeStorageSvc.store(USER_STORAGE_KEY, user);
         this.localeStorageSvc.store(USER_STORAGE_EXPIRE_KEY, this.momentSvc.getUserAuthExpirationDate());
+        console.log(`set current user: ${this.currentUser.userName}`);
     } 
 }
