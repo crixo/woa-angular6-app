@@ -13,6 +13,8 @@ import { HttpErrorHandler } from './services/http-error-handler.service';
 import { MessageModule } from './messages/message.module';
 import * as moment from 'moment';
 import { MomentService } from './services/moment.service';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+
 //import './string-prototypes';
 
 @NgModule({
@@ -23,6 +25,7 @@ import { MomentService } from './services/moment.service';
     MessageModule,
     SecurityModule.forRoot(),
     StorageServiceModule,
+    NgbCollapseModule,
    ],
   //exports: [BrowserAnimationsModule],
   declarations: [ AppComponent ],

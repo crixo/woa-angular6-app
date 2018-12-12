@@ -11,6 +11,7 @@ export class AppComponent {
 
     pageTitle: string = 'WOA';
     loading: boolean = true;
+    public isCollapsed = true;
 
     constructor(public authService: AuthService,
                 private router: Router) {
