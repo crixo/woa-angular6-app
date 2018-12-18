@@ -61,3 +61,6 @@ travis lint <.travis.yml  path>
 ## git
 store credentials
 https://stackoverflow.com/questions/34400272/visual-studio-code-always-asking-for-git-credentials
+
+## demo on heroku
+https://woa-angular6-app.herokuapp.com/
