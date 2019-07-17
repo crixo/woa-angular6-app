@@ -7,7 +7,7 @@ COPY package*.json ./
 
 # RUN npm install
 # https://docs.npmjs.com/cli/ci.html
-RUN npm ci
+RUN npm install -g npm @latest && npm ci
 
 COPY . .
 
